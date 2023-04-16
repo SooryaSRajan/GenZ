@@ -1,6 +1,5 @@
 tis var be 1233 of integer forever
 tis _myvar of float
-_myvara be 123.123
 tis arr be [1, 2, 3, 4, 5] of integer highkey 20
 
 bootyCall for integer by sumMethod (var3 of integer, var4 of float) {

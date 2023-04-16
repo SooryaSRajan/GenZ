@@ -17,6 +17,18 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCodeEntry(GenzParser.CodeEntryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCodeEntry(GenzParser.CodeEntryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGenz(GenzParser.GenzContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -101,6 +113,30 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArrayValues(GenzParser.ArrayValuesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayValues(GenzParser.ArrayValuesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableDeclaration(GenzParser.VariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -149,30 +185,6 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableAssignment(GenzParser.VariableAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariableAssignment(GenzParser.VariableAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTypesWithArray(GenzParser.TypesWithArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -209,18 +221,6 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTypes(GenzParser.TypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -233,37 +233,85 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { }
+	@Override public void enterArrayIndexing(GenzParser.ArrayIndexingContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { }
+	@Override public void exitArrayIndexing(GenzParser.ArrayIndexingContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayValues(GenzParser.ArrayValuesContext ctx) { }
+	@Override public void enterIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArrayValues(GenzParser.ArrayValuesContext ctx) { }
+	@Override public void exitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { }
+	@Override public void enterVariableAssignment(GenzParser.VariableAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { }
+	@Override public void exitVariableAssignment(GenzParser.VariableAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameterList(GenzParser.ParameterListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameterList(GenzParser.ParameterListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameter(GenzParser.ParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameter(GenzParser.ParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -276,6 +324,18 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMethodBody(GenzParser.MethodBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -341,18 +401,6 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayIndexing(GenzParser.ArrayIndexingContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArrayIndexing(GenzParser.ArrayIndexingContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpr(GenzParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -408,6 +456,90 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFactor(GenzParser.FactorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIsThisBlock(GenzParser.IsThisBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIsThisBlock(GenzParser.IsThisBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMehBlock(GenzParser.MehBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMehBlock(GenzParser.MehBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMethodCall(GenzParser.MethodCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodCall(GenzParser.MethodCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameterCallList(GenzParser.ParameterCallListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameterCallList(GenzParser.ParameterCallListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -540,126 +672,6 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDiv(GenzParser.DivContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameterList(GenzParser.ParameterListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameterList(GenzParser.ParameterListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameter(GenzParser.ParameterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameter(GenzParser.ParameterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIsThisBlock(GenzParser.IsThisBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIsThisBlock(GenzParser.IsThisBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMehBlock(GenzParser.MehBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMehBlock(GenzParser.MehBlockContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMethodCall(GenzParser.MethodCallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMethodCall(GenzParser.MethodCallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameterCallList(GenzParser.ParameterCallListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameterCallList(GenzParser.ParameterCallListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

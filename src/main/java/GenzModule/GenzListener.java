@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface GenzListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#codeEntry}.
+	 * @param ctx the parse tree
+	 */
+	void enterCodeEntry(GenzParser.CodeEntryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#codeEntry}.
+	 * @param ctx the parse tree
+	 */
+	void exitCodeEntry(GenzParser.CodeEntryContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#genz}.
 	 * @param ctx the parse tree
 	 */
@@ -78,6 +88,26 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitValuesWithoutArray(GenzParser.ValuesWithoutArrayContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#arrayValues}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayValues(GenzParser.ArrayValuesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#arrayValues}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayValues(GenzParser.ArrayValuesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -118,26 +148,6 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitForever(GenzParser.ForeverContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#variableAssignment}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableAssignment(GenzParser.VariableAssignmentContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#variableAssignment}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableAssignment(GenzParser.VariableAssignmentContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#variableAssignmentInner}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#variableAssignmentInner}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GenzParser#typesWithArray}.
 	 * @param ctx the parse tree
 	 */
@@ -168,16 +178,6 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitArraySize(GenzParser.ArraySizeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#integerIDChoice}.
-	 * @param ctx the parse tree
-	 */
-	void enterIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#integerIDChoice}.
-	 * @param ctx the parse tree
-	 */
-	void exitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GenzParser#types}.
 	 * @param ctx the parse tree
 	 */
@@ -188,35 +188,75 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitTypes(GenzParser.TypesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * Enter a parse tree produced by {@link GenzParser#arrayIndexing}.
 	 * @param ctx the parse tree
 	 */
-	void enterTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
+	void enterArrayIndexing(GenzParser.ArrayIndexingContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * Exit a parse tree produced by {@link GenzParser#arrayIndexing}.
 	 * @param ctx the parse tree
 	 */
-	void exitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
+	void exitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#arrayValues}.
+	 * Enter a parse tree produced by {@link GenzParser#integerIDChoice}.
 	 * @param ctx the parse tree
 	 */
-	void enterArrayValues(GenzParser.ArrayValuesContext ctx);
+	void enterIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#arrayValues}.
+	 * Exit a parse tree produced by {@link GenzParser#integerIDChoice}.
 	 * @param ctx the parse tree
 	 */
-	void exitArrayValues(GenzParser.ArrayValuesContext ctx);
+	void exitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * Enter a parse tree produced by {@link GenzParser#variableAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	void enterVariableAssignment(GenzParser.VariableAssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * Exit a parse tree produced by {@link GenzParser#variableAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	void exitVariableAssignment(GenzParser.VariableAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#variableAssignmentInner}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#variableAssignmentInner}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#parameterList}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterList(GenzParser.ParameterListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#parameterList}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterList(GenzParser.ParameterListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#parameterListChoice}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#parameterListChoice}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameter(GenzParser.ParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameter(GenzParser.ParameterContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#methodBody}.
 	 * @param ctx the parse tree
@@ -227,6 +267,16 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMethodBody(GenzParser.MethodBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#loop}.
 	 * @param ctx the parse tree
@@ -278,16 +328,6 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitInputStmt(GenzParser.InputStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#arrayIndexing}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayIndexing(GenzParser.ArrayIndexingContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#arrayIndexing}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GenzParser#expr}.
 	 * @param ctx the parse tree
 	 */
@@ -337,6 +377,76 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFactor(GenzParser.FactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#isThisBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterIsThisBlock(GenzParser.IsThisBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#isThisBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitIsThisBlock(GenzParser.IsThisBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#orIsThisBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#orIsThisBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#mehBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterMehBlock(GenzParser.MehBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#mehBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitMehBlock(GenzParser.MehBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#methodCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodCall(GenzParser.MethodCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#methodCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodCall(GenzParser.MethodCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#parameterCallList}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterCallList(GenzParser.ParameterCallListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#parameterCallList}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterCallList(GenzParser.ParameterCallListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#parameterCallListChoice}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#parameterCallListChoice}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#conditionalStatement}.
 	 * @param ctx the parse tree
@@ -447,104 +557,4 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDiv(GenzParser.DivContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#parameterList}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameterList(GenzParser.ParameterListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#parameterList}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameterList(GenzParser.ParameterListContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#parameterListChoice}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#parameterListChoice}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameter(GenzParser.ParameterContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameter(GenzParser.ParameterContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#isThisBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterIsThisBlock(GenzParser.IsThisBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#isThisBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitIsThisBlock(GenzParser.IsThisBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#orIsThisBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#orIsThisBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#mehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterMehBlock(GenzParser.MehBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#mehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitMehBlock(GenzParser.MehBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodCall(GenzParser.MethodCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodCall(GenzParser.MethodCallContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#parameterCallList}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameterCallList(GenzParser.ParameterCallListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#parameterCallList}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameterCallList(GenzParser.ParameterCallListContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#parameterCallListChoice}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#parameterCallListChoice}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
 }

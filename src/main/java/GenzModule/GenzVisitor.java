@@ -11,6 +11,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#codeEntry}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCodeEntry(GenzParser.CodeEntryContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#genz}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -53,6 +59,18 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitValuesWithoutArray(GenzParser.ValuesWithoutArrayContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#arrayValues}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayValues(GenzParser.ArrayValuesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -77,18 +95,6 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForever(GenzParser.ForeverContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#variableAssignment}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableAssignment(GenzParser.VariableAssignmentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#variableAssignmentInner}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link GenzParser#typesWithArray}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -107,41 +113,65 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArraySize(GenzParser.ArraySizeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#integerIDChoice}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link GenzParser#types}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTypes(GenzParser.TypesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * Visit a parse tree produced by {@link GenzParser#arrayIndexing}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
+	T visitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#arrayValues}.
+	 * Visit a parse tree produced by {@link GenzParser#integerIDChoice}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArrayValues(GenzParser.ArrayValuesContext ctx);
+	T visitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#arrayValuesRecursive}.
+	 * Visit a parse tree produced by {@link GenzParser#variableAssignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx);
+	T visitVariableAssignment(GenzParser.VariableAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#variableAssignmentInner}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#parameterList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterList(GenzParser.ParameterListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#parameterListChoice}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#parameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter(GenzParser.ParameterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#methodBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMethodBody(GenzParser.MethodBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#typesWithVoid}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#loop}.
 	 * @param ctx the parse tree
@@ -173,12 +203,6 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInputStmt(GenzParser.InputStmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#arrayIndexing}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link GenzParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -208,6 +232,48 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFactor(GenzParser.FactorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#isThisBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIsThisBlock(GenzParser.IsThisBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#orIsThisBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#mehBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMehBlock(GenzParser.MehBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#methodCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodCall(GenzParser.MethodCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#parameterCallList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterCallList(GenzParser.ParameterCallListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#parameterCallListChoice}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#conditionalStatement}.
 	 * @param ctx the parse tree
@@ -274,64 +340,4 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDiv(GenzParser.DivContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#parameterList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterList(GenzParser.ParameterListContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#parameterListChoice}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterListChoice(GenzParser.ParameterListChoiceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#parameter}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameter(GenzParser.ParameterContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#isThisBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIsThisBlock(GenzParser.IsThisBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#orIsThisBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#mehBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMehBlock(GenzParser.MehBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#methodCall}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMethodCall(GenzParser.MethodCallContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#parameterCallList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterCallList(GenzParser.ParameterCallListContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#parameterCallListChoice}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
 }

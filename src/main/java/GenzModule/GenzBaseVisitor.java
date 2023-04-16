@@ -18,6 +18,13 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCodeEntry(GenzParser.CodeEntryContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitGenz(GenzParser.GenzContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -67,6 +74,20 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitArrayValues(GenzParser.ArrayValuesContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitVariableDeclaration(GenzParser.VariableDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -95,20 +116,6 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariableAssignment(GenzParser.VariableAssignmentContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitTypesWithArray(GenzParser.TypesWithArrayContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -130,13 +137,6 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitTypes(GenzParser.TypesContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -144,21 +144,49 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { return visitChildren(ctx); }
+	@Override public T visitArrayIndexing(GenzParser.ArrayIndexingContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArrayValues(GenzParser.ArrayValuesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArrayValuesRecursive(GenzParser.ArrayValuesRecursiveContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVariableAssignment(GenzParser.VariableAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParameterList(GenzParser.ParameterListContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParameter(GenzParser.ParameterContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -166,6 +194,13 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitMethodBody(GenzParser.MethodBodyContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTypesWithVoid(GenzParser.TypesWithVoidContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -207,13 +242,6 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArrayIndexing(GenzParser.ArrayIndexingContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitExpr(GenzParser.ExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -243,6 +271,55 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitFactor(GenzParser.FactorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIsThisBlock(GenzParser.IsThisBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMehBlock(GenzParser.MehBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMethodCall(GenzParser.MethodCallContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParameterCallList(GenzParser.ParameterCallListContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -320,74 +397,4 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitDiv(GenzParser.DivContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitParameterList(GenzParser.ParameterListContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitParameterListChoice(GenzParser.ParameterListChoiceContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitParameter(GenzParser.ParameterContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitIsThisBlock(GenzParser.IsThisBlockContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitMehBlock(GenzParser.MehBlockContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitMethodCall(GenzParser.MethodCallContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitParameterCallList(GenzParser.ParameterCallListContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx) { return visitChildren(ctx); }
 }
