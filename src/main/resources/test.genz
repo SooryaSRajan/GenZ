@@ -1,0 +1,74 @@
+tis var be 1233 of integer forever
+tis _myvar of float
+_myvara be 123.123
+tis arr be [1, 2, 3, 4, 5] of integer highkey 20
+
+bootyCall for integer by sumMethod (var3 of integer, var4 of float) {
+
+   tis var be 1233 of integer forever
+   tis _myvar of float
+   _myvara be 123.123
+
+}
+
+bootyCall for integer by sumMethodNew () {
+
+   tis var be 1233 of integer forever
+   tis _myvar of float
+   _myvara be 123.123
+
+   _myvara be 1 + 2 - (arr giv 2 + 3)
+
+   tis boolVar be fax of boolean
+   boolVar be fax || cap
+
+   tis _functionRes of integer
+   _functionRes be sumMethod(1 + 1, _functionRes(1, 2) + arr giv 1)
+   sumMethod()
+   sumMethod(1 + 1 - (123 * 4), _functionRes(1, 2) + arr giv 1)
+
+
+   is tis (boolVar) {
+        do me later from 1 to 10 tis be y {
+           is tis (boolVar) {
+                do me later from 1 to 10 tis be y {
+                   tis var be 1233 of integer forever
+                   tis _myvar of float
+                   _myvara be 123.123
+                }
+           }
+           or is tis (boolVar) {
+                   do me now from 1 to 10 tis be y {
+                       is tis (boolVar) {
+                       }
+                   }
+           }
+           meh {
+
+           }
+        }
+   }
+   or is tis (boolVar) {
+           do me now from 1 to 10 tis be y {
+               is tis (boolVar) {
+               }
+           }
+   }
+   meh {
+
+   }
+
+}
+
+genz {
+    tis var be 1233 of integer forever
+    tis _myvar of float
+    _myvara be 123.123
+    tis helloWorldVar be "Hello world, sum: " of string
+
+   do me now from 1 to 10 tis be y {
+       is tis (boolVar) {
+       }
+   }
+
+}

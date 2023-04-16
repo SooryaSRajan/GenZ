@@ -1,4 +1,4 @@
-tis var be 1233 of integer
+tis var be 1233 of integer forever
 tis _myvar of float
 _myvar be 123.123
 tis helloWorldVar be "Hello world, sum: " of string
