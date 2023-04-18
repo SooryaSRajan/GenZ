@@ -9,7 +9,7 @@ tis arr8 be {'a', 'b', 'c', 'd'} of character highkey 20
 tis arr9 of integer highkey 20 8=> or this
 tis arr10 of integer highkey 20
 
-bootyCall for sus by sumMethod (var3 of integer, var4 of float highkey 20) {
+bootyCall for noob by sumMethod (var3 of integer, var4 of float highkey 20) {
 
    tis var be 1233 of integer forever
    tis _myvar of float
@@ -19,7 +19,7 @@ bootyCall for sus by sumMethod (var3 of integer, var4 of float highkey 20) {
 
 }
 
-bootyCall for sus by sumMethodNew () {
+bootyCall for noob by sumMethodNew () {
 
    tis var be 1233 of integer forever
    tis _myvar of float
@@ -33,7 +33,7 @@ bootyCall for sus by sumMethodNew () {
    tis _functionRes of integer
    _functionRes be sumMethod(1 + 1, _functionRes(1, 2) + arr giv 1)
    sumMethod()
-   sumMethod(1 + 1 - (123 * 4), _functionRes(1, 2) + arr giv 1)
+   sumMethodNew(2 + 13123 - (14141323 * 4), _functionRes(1, 2) + arr giv 1)
 
 
    is tis (1 + 1 > 2 || 2 < 5 || sum(1, 2) > 32 && !321 > arr giv 3) {

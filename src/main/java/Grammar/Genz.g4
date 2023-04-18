@@ -6,7 +6,7 @@ genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //internal statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | loop | isThisBlock | outputStmt | inputStmt | methodCall; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | loop | isThisBlock | outputStmt | inputStmt | expr; //TODO: Add acceptable blocks like loops and conditionals
 
 //global statements, can only be functions or variable declaration
 globalStatementsRecursive: globalStatements globalStatementsRecursive | ;
@@ -54,7 +54,7 @@ parameter: ID OF typesWithArray;
 
 //method body declaration
 methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
-typesWithVoid: typesWithArray | SUS; //type keywords with void
+typesWithVoid: typesWithArray | NOOB; //type keywords with void
 
 //loop:
 loop: DO ME FROM expr TO expr loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
@@ -71,9 +71,11 @@ term : factor termMultDivFactor;
 termMultDivFactor: mul factor termMultDivFactor | div factor termMultDivFactor | ;
 factor : valuesWithoutArray
     | lp expr rp
-    | ID
+    | getExpressionID
     | arrayIndexing
     | methodCall;
+
+getExpressionID: ID;
 
 //conditonal blocks:
 isThisBlock: IS TIS BRACKET_OPEN conditionalStatement BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED orIsThisMehBlock;
@@ -84,7 +86,9 @@ mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 //method CALL
 methodCall: ID BRACKET_OPEN parameterCallList BRACKET_CLOSE;
 parameterCallList: expr parameterCallListChoice | ;
-parameterCallListChoice: COMMA expr parameterCallListChoice | ;
+parameterCallListChoice: commaBlock expr parameterCallListChoice | ;
+
+commaBlock: COMMA;
 
 //conditions for loops and if
 conditionalStatement : conditionStatement conditionBooleans
@@ -163,7 +167,7 @@ FLOAT: 'float';
 DOUBLE: 'double';
 CHARACTER: 'character';
 BOOLEAN: 'boolean';
-SUS: 'sus'; //void
+NOOB: 'noob'; //void
 
 //VALUES:
 FAX: 'fax';

@@ -227,6 +227,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFactor(GenzParser.FactorContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#getExpressionID}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGetExpressionID(GenzParser.GetExpressionIDContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#isThisBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -268,6 +274,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParameterCallListChoice(GenzParser.ParameterCallListChoiceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#commaBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaBlock(GenzParser.CommaBlockContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#conditionalStatement}.
 	 * @param ctx the parse tree

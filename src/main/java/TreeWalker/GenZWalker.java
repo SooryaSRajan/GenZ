@@ -5,6 +5,7 @@ import GenzModule.GenzParser;
 import Models.Types;
 import Utils.InitializationUtils;
 import javassist.*;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -27,6 +28,19 @@ public class GenZWalker extends GenzBaseListener {
         this.cc = pool.makeClass(className);
     }
 
+    //TODO: Parse condition blocks, for loops, expressions -> includes array call and function call, conditional statements, input and output.
+
+
+    @Override
+    public void enterExpr(GenzParser.ExprContext ctx) {
+        super.enterExpr(ctx);
+        //TODO: Parse expression using walker in blocks where expressions is used.
+        ExpressionWalker expressionWalker = new ExpressionWalker(expression -> {
+            System.out.println("Expression: " + expression);
+        });
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(expressionWalker, ctx);
+    }
 
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
@@ -119,7 +133,6 @@ public class GenZWalker extends GenzBaseListener {
         }
 
         currentMethodCode = "public static " + methodReturnType + " " + methodName + "(" + parameterString + ") {";
-
 
 
     }
@@ -246,7 +259,7 @@ public class GenZWalker extends GenzBaseListener {
                 e.printStackTrace();
             }
         } else {
-             currentMethodCode += InitializationUtils.createVariableLocal(variableName, null, cc, isForever, type);
+            currentMethodCode += InitializationUtils.createVariableLocal(variableName, null, cc, isForever, type);
         }
 
     }

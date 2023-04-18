@@ -16,7 +16,7 @@ public class InitializationUtils {
                 case "double" -> "D";
                 case "character" -> "C";
                 case "boolean" -> "Z";
-                case "sus" -> "V";
+                case "noob" -> "V";
                 default -> type;
             };
         }
@@ -28,7 +28,7 @@ public class InitializationUtils {
                 case "double" -> "double";
                 case "character" -> "char";
                 case "boolean" -> "boolean";
-                case "sus" -> "void";
+                case "noob" -> "void";
                 default -> type;
             };
 
@@ -74,10 +74,6 @@ public class InitializationUtils {
 
         return type;
 
-    }
-
-    public static String getArrayWithSize(String arrayName, String arrayType, String arraySize) {
-        return arrayType + "[] " + arrayName + " = new " + arrayType + "[" + arraySize + "];";
     }
 
     //Variable declaration:
