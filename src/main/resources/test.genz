@@ -2,10 +2,14 @@ tis var be 1233 of integer forever
 tis _myvar of float
 tis arr be {1, 2, 3, 4, 5} of integer highkey 8=> either this
 tis arr4 be {1, 2, 3, 4, 5} of integer highkey 20 8=> either this
-tis arr2 of integer highkey 20 8=> or this
-tis arr3 of integer highkey 20
+tis arr5 be {"1", "2", "3", "4", "5"} of string highkey 20
+tis arr6 be {fax, fax, cap, fax} of boolean highkey 20
+tis arr7 be {1.2, 31.3, 31, 43, 12} of float highkey 20
+tis arr8 be {'a', 'b', 'c', 'd'} of float highkey 20
+tis arr9 of integer highkey 20 8=> or this
+tis arr10 of integer highkey 20
 
-bootyCall for integer by sumMethod (var3 of integer, var4 of float) {
+bootyCall for integer by sumMethod (var3 of integer, var4 of float highkey) {
 
    tis var be 1233 of integer forever
    tis _myvar of float

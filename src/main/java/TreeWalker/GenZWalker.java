@@ -2,9 +2,9 @@ package TreeWalker;
 
 import GenzModule.GenzBaseListener;
 import GenzModule.GenzParser;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
+import Models.Types;
+import Utils.InitializationUtils;
+import javassist.*;
 
 import java.util.Arrays;
 
@@ -17,7 +17,6 @@ public class GenZWalker extends GenzBaseListener {
 
     boolean isGlobalScope = false;
 
-    CtMethod currentMethod = null;
     String currentMethodCode = "";
 
     public GenZWalker(String className, String directory) {
@@ -31,13 +30,12 @@ public class GenZWalker extends GenzBaseListener {
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.enterCodeEntry(ctx);
-        //create
+        System.out.println("Starting compilation of " + className + "");
     }
 
     @Override
     public void exitCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.exitCodeEntry(ctx);
-        //write file
         try {
             cc.writeFile(directory);
         } catch (Exception e) {
@@ -48,11 +46,38 @@ public class GenZWalker extends GenzBaseListener {
     @Override
     public void enterGenz(GenzParser.GenzContext ctx) {
         super.enterGenz(ctx);
+        //append public static void main(String[] args) { to currentMethodCode
+        currentMethodCode = "public static void main(String[] args) {";
     }
 
     @Override
     public void exitGenz(GenzParser.GenzContext ctx) {
         super.exitGenz(ctx);
+        currentMethodCode += "}";
+        try {
+            CtMethod method = CtNewMethod.make(currentMethodCode, cc);
+            cc.addMethod(method);
+            currentMethodCode = "";
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void enterMethodBody(GenzParser.MethodBodyContext ctx) {
+        super.enterMethodBody(ctx);
+
+        //methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
+
+        isGlobalScope = false;
+        String methodName = ctx.typesWithVoid().getText();
+
+    }
+
+    @Override
+    public void exitMethodBody(GenzParser.MethodBodyContext ctx) {
+        super.exitMethodBody(ctx);
+        isGlobalScope = true;
     }
 
     @Override
@@ -73,35 +98,18 @@ public class GenZWalker extends GenzBaseListener {
 
         GenzParser.VariableDeclarationSelectionContext variableDeclarationSelectionContext = ctx.variableDeclarationSelection();
 
+        //variable name
         String variableName = variableDeclarationSelectionContext.ID().getText();
         GenzParser.InitializationOfVariableContext valuesContext =
                 variableDeclarationSelectionContext
                         .initializationOfVariable();
 
-        String type = ctx.typesWithArray().types().getText();
-        boolean isArray = ctx.typesWithArray().arrayChoice() != null;
-        int arraySize = -1;
-        if (isArray) {
-            GenzParser.ArraySizeContext arraySizeContext = ctx.typesWithArray().arrayChoice().arraySize();
-            if (arraySizeContext != null) {
-                GenzParser.IntegerIDChoiceContext arraySizeString = arraySizeContext.integerIDChoice();
-                if (arraySizeString != null) {
-                    arraySize = Integer.parseInt(arraySizeString.getText());
-                } else {
-                    arraySize = 0;
-                }
-            }
-        }
+        //if final
+        boolean isForever = ctx.forever() != null;
 
-        type = switch (type) {
-            case "string" -> "java/lang/String";
-            case "integer" -> "I";
-            case "float" -> "F";
-            case "double" -> "D";
-            case "character" -> "C";
-            case "boolean" -> "Z";
-            default -> type;
-        };
+        //final
+        Types type = InitializationUtils.getTypeData(ctx.typesWithArray());
+
 
         //if not null, then there is an initialization
         if (valuesContext != null) {
@@ -109,41 +117,55 @@ public class GenZWalker extends GenzBaseListener {
             System.out.println(valuesContext.getText());
             System.out.println(valuesContext.values() + " asdass");
 
+            String value = "";
+
             if (valuesContext.values() != null) {
                 if (valuesContext.values().valuesWithoutArray() != null) {
-                    String value = valuesContext.values().valuesWithoutArray().getText();
 
-                    //parse value accordingly and
-                    Object parsedValue = switch (type) {
-                        case "java/lang/String" -> value;
-                        case "I" -> Integer.parseInt(value);
-                        case "F" -> Float.parseFloat(value);
-                        case "D" -> Double.parseDouble(value);
-                        case "C" -> value.charAt(0);
-                        case "Z" -> Boolean.parseBoolean(value);
-                        default -> null;
-                    };
-
-                    //create variable with value
-                    if (isGlobalScope) {
-                    } else {
-                    }
-
+                    //not an array
+                    value = valuesContext.values().valuesWithoutArray().getText();
 
                 } else {
-                    //TODO: Initialize array
-                    System.out.println("ARRAY");
                     String arrayString = valuesContext.values().arrayValues().getText();
-                    //remove brackets and split by comma and parse accordingly
-                    String[] arrayValues = arrayString.substring(1, arrayString.length() - 1).split(",");
-                    System.out.println(Arrays.toString(arrayValues));
-                    //create array
-                    if (isGlobalScope) {
+                    System.out.println(arrayString);
+                    if (arrayString.contains("fax") || arrayString.contains("cap")) {
 
+                        if (!type.getDataType().equals("boolean")) {
+                            throw new RuntimeException("Cannot initialize array with boolean values");
+                        }
+
+                        arrayString = arrayString.replace("{", "");
+                        arrayString = arrayString.replace("}", "");
+                        String[] arrayValues = arrayString.split(",");
+                        for (int i = 0; i < arrayValues.length; i++) {
+                            if (arrayValues[i].equals("fax")) {
+                                arrayValues[i] = "true";
+                            } else if (arrayValues[i].equals("cap")) {
+                                arrayValues[i] = "false";
+                            } else {
+                                throw new RuntimeException("Invalid value in boolean array");
+                            }
+                        }
+                        value = Arrays.toString(arrayValues);
+                        value = value.replace("[", "{");
+                        value = value.replace("]", "}");
+                        value = value.replace("\"", "");
                     } else {
-
+                        value = arrayString;
                     }
+                    value = "new " + type.getDataType() + "[] " + value;
+                }
+                //new <Type>[]
 
+                if (isGlobalScope) {
+                    //String variableName, String variableType, String variableValue, CtClass cc
+                    try {
+                        InitializationUtils.createVariableGlobal(variableName, type.getDataType(), value, cc, isForever, type.isArray());
+                    } catch (CannotCompileException e) {
+                        System.out.println("Cannot compile global variable");
+                        e.printStackTrace();
+                    }
+                } else {
                 }
             }
 
