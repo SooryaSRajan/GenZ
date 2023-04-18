@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.IOException;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
 
         String pathToFile = "src/main/resources/test.genz";
@@ -22,6 +23,8 @@ public class Main {
         String fileName = pathToFile.substring(pathToFile.lastIndexOf("/") + 1, pathToFile.lastIndexOf("."));
         fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
 
+        String pathOfDirectory = pathToFile.substring(0, pathToFile.lastIndexOf("/"));
+
         CharStream codePointCharStream = CharStreams.fromFileName(pathToFile);
 
         //generates a lexer output for the input code
@@ -32,8 +35,9 @@ public class Main {
 
         //parser
         GenzParser parser = new GenzParser(token);
+//        parser.codeEntry();
         ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(new GenZWalker(fileName), parser.codeEntry());
+        walker.walk(new GenZWalker(fileName, pathOfDirectory), parser.codeEntry());
 
     }
 }

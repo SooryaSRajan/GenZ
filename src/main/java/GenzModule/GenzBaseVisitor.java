@@ -214,13 +214,6 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNowOrLater(GenzParser.NowOrLaterContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitLoopVairable(GenzParser.LoopVairableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

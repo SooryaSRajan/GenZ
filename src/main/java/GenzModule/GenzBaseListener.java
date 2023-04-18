@@ -353,18 +353,6 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNowOrLater(GenzParser.NowOrLaterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNowOrLater(GenzParser.NowOrLaterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterLoopVairable(GenzParser.LoopVairableContext ctx) { }
 	/**
 	 * {@inheritDoc}

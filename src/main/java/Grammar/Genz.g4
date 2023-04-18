@@ -15,13 +15,16 @@ globalStatements: variableDeclaration | methodBody;
 //values with array creation - only during initialization
 values: valuesWithoutArray | arrayValues; //actual values
 valuesWithoutArray: STRING_TYPE | INT_TYPE | FLOAT_TYPE | CHAR_TYPE | FAX | CAP;
-arrayValues: SQ_OPEN arrayValuesRecursive SQ_CLOSE;
-arrayValuesRecursive: values COMMA arrayValuesRecursive | values;
+arrayValues: CURLY_OPEN arrayValuesRecursive CURLY_CLOSED;
+arrayValuesRecursive: valuesWithoutArray COMMA arrayValuesRecursive | valuesWithoutArray;
 
 //variable declaration
 variableDeclaration: TIS variableDeclarationSelection OF typesWithArray forever;
 variableDeclarationSelection: ID initializationOfVariable;
 initializationOfVariable: BE values | ;
+
+
+//TODO: Modify variable declaration for arrays such that either new array or pre-initialized array can be used, not both in a single line
 
 //forever - final
 forever: FOREVER | ; //final declaration
@@ -53,9 +56,8 @@ parameter: ID OF typesWithArray;
 methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 typesWithVoid: typesWithArray | SUS; //type keywords with void
 
-//loops:
-loop: DO ME nowOrLater FROM expr TO expr loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
-nowOrLater: NOW | LATER;
+//loop:
+loop: DO ME FROM expr TO expr loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
 loopVairable: TIS BE ID | ;
 
 //output statement:
@@ -174,13 +176,11 @@ CHAR_TYPE: '\''([a-zA-Z0-9_ ])'\'';
 //VARIABLE NAME
 ID: ([a-zA-Z_][a-zA-Z0-9_]*);
 
-//Brackets
+//Bracketchars
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 CURLY_OPEN: '{';
 CURLY_CLOSED: '}';
-SQ_OPEN: '[';
-SQ_CLOSE: ']';
 
 //SYMBOLS
 COMMA: ',';

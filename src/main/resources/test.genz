@@ -1,6 +1,9 @@
 tis var be 1233 of integer forever
 tis _myvar of float
-tis arr be [1, 2, 3, 4, 5] of integer highkey 20
+tis arr be {1, 2, 3, 4, 5} of integer highkey 8=> either this
+tis arr4 be {1, 2, 3, 4, 5} of integer highkey 20 8=> either this
+tis arr2 of integer highkey 20 8=> or this
+tis arr3 of integer highkey 20
 
 bootyCall for integer by sumMethod (var3 of integer, var4 of float) {
 
@@ -27,17 +30,17 @@ bootyCall for integer by sumMethodNew () {
    sumMethod(1 + 1 - (123 * 4), _functionRes(1, 2) + arr giv 1)
 
 
-   is tis (boolVar) {
-        do me later from 1 to 10 tis be y {
+   is tis (1 + 1 > 2 || 2 < 5 || sum(1, 2) > 32 && !321 > arr giv 3) {
+        do me from 1 to 10 tis be y {
            is tis (boolVar) {
-                do me later from 1 to 10 tis be y {
+                do me from 1 to 10 tis be y {
                    tis var be 1233 of integer forever
                    tis _myvar of float
                    _myvara be 123.123
                 }
            }
            or is tis (boolVar) {
-                   do me now from 1 to 10 tis be y {
+                   do me from 1 to 10 tis be y {
                        is tis (boolVar) {
                        }
                    }
@@ -48,7 +51,7 @@ bootyCall for integer by sumMethodNew () {
         }
    }
    or is tis (boolVar) {
-           do me now from 1 to 10 tis be y {
+           do me from 1 to 10 tis be y {
                is tis (boolVar) {
                }
            }
@@ -65,7 +68,7 @@ genz {
     _myvara be 123.123
     tis helloWorldVar be "Hello world, sum: " of string
 
-   do me now from 1 to 10 tis be y {
+   do me from 1 to 10 tis be y {
        is tis (boolVar) {
        }
    }

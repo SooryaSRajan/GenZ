@@ -179,12 +179,6 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLoop(GenzParser.LoopContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#nowOrLater}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNowOrLater(GenzParser.NowOrLaterContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link GenzParser#loopVairable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

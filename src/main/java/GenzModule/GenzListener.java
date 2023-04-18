@@ -288,16 +288,6 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitLoop(GenzParser.LoopContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#nowOrLater}.
-	 * @param ctx the parse tree
-	 */
-	void enterNowOrLater(GenzParser.NowOrLaterContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#nowOrLater}.
-	 * @param ctx the parse tree
-	 */
-	void exitNowOrLater(GenzParser.NowOrLaterContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GenzParser#loopVairable}.
 	 * @param ctx the parse tree
 	 */
