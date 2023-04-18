@@ -136,6 +136,12 @@ public class GenzParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class CodeEntryContext extends ParserRuleContext {
+		public List<GlobalStatementsRecursiveContext> globalStatementsRecursive() {
+			return getRuleContexts(GlobalStatementsRecursiveContext.class);
+		}
+		public GlobalStatementsRecursiveContext globalStatementsRecursive(int i) {
+			return getRuleContext(GlobalStatementsRecursiveContext.class,i);
+		}
 		public GenzContext genz() {
 			return getRuleContext(GenzContext.class,0);
 		}
@@ -165,7 +171,11 @@ public class GenzParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(108);
+			globalStatementsRecursive();
+			setState(109);
 			genz();
+			setState(110);
+			globalStatementsRecursive();
 			}
 		}
 		catch (RecognitionException re) {
@@ -181,12 +191,6 @@ public class GenzParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class GenzContext extends ParserRuleContext {
-		public List<GlobalStatementsRecursiveContext> globalStatementsRecursive() {
-			return getRuleContexts(GlobalStatementsRecursiveContext.class);
-		}
-		public GlobalStatementsRecursiveContext globalStatementsRecursive(int i) {
-			return getRuleContext(GlobalStatementsRecursiveContext.class,i);
-		}
 		public TerminalNode GENZ() { return getToken(GenzParser.GENZ, 0); }
 		public TerminalNode CURLY_OPEN() { return getToken(GenzParser.CURLY_OPEN, 0); }
 		public StatementRecursiveContext statementRecursive() {
@@ -218,18 +222,14 @@ public class GenzParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110);
-			globalStatementsRecursive();
-			setState(111);
-			match(GENZ);
 			setState(112);
-			match(CURLY_OPEN);
+			match(GENZ);
 			setState(113);
-			statementRecursive();
+			match(CURLY_OPEN);
 			setState(114);
-			match(CURLY_CLOSED);
+			statementRecursive();
 			setState(115);
-			globalStatementsRecursive();
+			match(CURLY_CLOSED);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3521,7 +3521,7 @@ public class GenzParser extends Parser {
 		"(\u0007(\u0002)\u0007)\u0002*\u0007*\u0002+\u0007+\u0002,\u0007,\u0002"+
 		"-\u0007-\u0002.\u0007.\u0002/\u0007/\u00020\u00070\u00021\u00071\u0002"+
 		"2\u00072\u00023\u00073\u00024\u00074\u00025\u00075\u0001\u0000\u0001\u0000"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002"+
 		"z\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0003\u0003\u0083\b\u0003\u0001\u0004\u0001\u0004"+
@@ -3561,7 +3561,7 @@ public class GenzParser extends Parser {
 		"\u00006\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018"+
 		"\u001a\u001c\u001e \"$&(*,.02468:<>@BDFHJLNPRTVXZ\\^`bdfhj\u0000\u0004"+
 		"\u0001\u0000#(\u0001\u0000\u001c!\u0002\u0000&&))\u0001\u000038\u0170"+
-		"\u0000l\u0001\u0000\u0000\u0000\u0002n\u0001\u0000\u0000\u0000\u0004y"+
+		"\u0000l\u0001\u0000\u0000\u0000\u0002p\u0001\u0000\u0000\u0000\u0004y"+
 		"\u0001\u0000\u0000\u0000\u0006\u0082\u0001\u0000\u0000\u0000\b\u0088\u0001"+
 		"\u0000\u0000\u0000\n\u008c\u0001\u0000\u0000\u0000\f\u0090\u0001\u0000"+
 		"\u0000\u0000\u000e\u0092\u0001\u0000\u0000\u0000\u0010\u0094\u0001\u0000"+
@@ -3585,9 +3585,9 @@ public class GenzParser extends Parser {
 		"\u0000^\u0174\u0001\u0000\u0000\u0000`\u0176\u0001\u0000\u0000\u0000b"+
 		"\u0178\u0001\u0000\u0000\u0000d\u017a\u0001\u0000\u0000\u0000f\u017c\u0001"+
 		"\u0000\u0000\u0000h\u017e\u0001\u0000\u0000\u0000j\u0180\u0001\u0000\u0000"+
-		"\u0000lm\u0003\u0002\u0001\u0000m\u0001\u0001\u0000\u0000\u0000no\u0003"+
-		"\b\u0004\u0000op\u0005\u0002\u0000\u0000pq\u0005,\u0000\u0000qr\u0003"+
-		"\u0004\u0002\u0000rs\u0005-\u0000\u0000st\u0003\b\u0004\u0000t\u0003\u0001"+
+		"\u0000lm\u0003\b\u0004\u0000mn\u0003\u0002\u0001\u0000no\u0003\b\u0004"+
+		"\u0000o\u0001\u0001\u0000\u0000\u0000pq\u0005\u0002\u0000\u0000qr\u0005"+
+		",\u0000\u0000rs\u0003\u0004\u0002\u0000st\u0005-\u0000\u0000t\u0003\u0001"+
 		"\u0000\u0000\u0000uv\u0003\u0006\u0003\u0000vw\u0003\u0004\u0002\u0000"+
 		"wz\u0001\u0000\u0000\u0000xz\u0001\u0000\u0000\u0000yu\u0001\u0000\u0000"+
 		"\u0000yx\u0001\u0000\u0000\u0000z\u0005\u0001\u0000\u0000\u0000{\u0083"+

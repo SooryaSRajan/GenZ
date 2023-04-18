@@ -1,8 +1,8 @@
 grammar Genz;
 
 //variable declaration
-codeEntry: genz;
-genz: globalStatementsRecursive GENZ CURLY_OPEN statementRecursive CURLY_CLOSED globalStatementsRecursive;
+codeEntry: globalStatementsRecursive genz globalStatementsRecursive;
+genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //internal statememts
 statementRecursive: statement statementRecursive | ;

@@ -28,13 +28,25 @@ public class InitializationUtils {
                 case "double" -> "double";
                 case "character" -> "char";
                 case "boolean" -> "boolean";
-                case "sus" -> "Void";
+                case "sus" -> "void";
                 default -> type;
             };
 
         }
 
         return type;
+    }
+
+    public static Types getParameterType(GenzParser.ParameterContext ctx){
+
+        Types type = new Types();
+        String baseType = getType(ctx.typesWithArray().types().getText(), true);
+        type.setDataType(baseType);
+        boolean isHighKeyType = ctx.typesWithArray().arrayChoice() != null && ctx.typesWithArray().arrayChoice().HIGHKEY() != null;
+        type.setArraySize(0);
+        type.setArray(isHighKeyType);
+        return type;
+
     }
 
     public static Types getTypeData(GenzParser.TypesWithArrayContext ctx){
@@ -64,43 +76,28 @@ public class InitializationUtils {
 
     }
 
-    //Array declaration
-    public static void createArrayPreInitializedGlobal(String arrayName, String arrayType, String arrayValues, CtClass cc) throws CannotCompileException {
-        CtField f2 = CtField.make(generateArrayPreInitializedString(arrayName, arrayType, arrayValues), cc);
-        f2.setModifiers(Modifier.PUBLIC | Modifier.STATIC);
-        cc.addField(f2);
-    }
-
-    public static void createArrayWithSizeGlobal(String arrayName, String arrayType, String arraySize, CtClass cc) throws CannotCompileException {
-        CtField f2 = CtField.make(getArrayWithSize(arrayName, arrayType, arraySize), cc);
-        f2.setModifiers(Modifier.PUBLIC | Modifier.STATIC);
-        cc.addField(f2);
-    }
-
-    public static String generateArrayPreInitializedString(String arrayName, String arrayType, String arrayValues) {
-        String arrayDeclaration = arrayType + "[] " + arrayName + " = new " + arrayType + "[]{";
-        arrayDeclaration += arrayValues + "};";
-        return arrayDeclaration;
-    }
-
     public static String getArrayWithSize(String arrayName, String arrayType, String arraySize) {
         return arrayType + "[] " + arrayName + " = new " + arrayType + "[" + arraySize + "];";
     }
 
     //Variable declaration:
-    public static String getVariableDeclaration(String variableName, String variableType, String variableValue, boolean isArray) {
+    public static String getVariableDeclaration(String variableName, String variableValue, Types type) {
         if (variableValue == null || variableValue.equals("")) {
-            variableValue = "null";
+            if(type.isArray()){
+                return type.getDataType() + "[] " + variableName + " = new " + type.getDataType() + "[" + type.getArraySize() + "];";
+            }
+            else
+                return type.getDataType() + " " + variableName + ";";
         }
-        if(isArray)
-            return variableType + "[] " + variableName + " = " + variableValue + ";";
+        if(type.isArray())
+            return type.getDataType() + "[] " + variableName + " = " + variableValue + ";";
         else
-            return variableType + " " + variableName + " = " + variableValue + ";";
+            return type.getDataType() + " " + variableName + " = " + variableValue + ";";
     }
 
     //global
-    public static void createVariableGlobal(String variableName, String variableType, String variableValue, CtClass cc, boolean isFinal, boolean isArray) throws CannotCompileException {
-        CtField f2 = CtField.make(getVariableDeclaration(variableName, variableType, variableValue, isArray), cc);
+    public static void createVariableGlobal(String variableName, String variableValue, CtClass cc, boolean isFinal, Types types) throws CannotCompileException {
+        CtField f2 = CtField.make(getVariableDeclaration(variableName, variableValue, types), cc);
         int flags = Modifier.PUBLIC | Modifier.STATIC;
         if(isFinal)
             flags |= Modifier.FINAL;
@@ -110,17 +107,10 @@ public class InitializationUtils {
         cc.addField(f2);
     }
 
-    //function declaration
-    public static String getFunctionDeclaration(String functionName, String functionType, String returnType) {
-        return functionType + " " + functionName + "() { return " + returnType + "; }";
+    public static String createVariableLocal(String variableName, String variableValue, CtClass cc, boolean isFinal, Types types){
+        return getVariableDeclaration(variableName, variableValue, types);
     }
 
-    //global
-    public static CtMethod createFunctionGlobal(String functionName, String functionType, String returnType, CtClass cc) throws CannotCompileException {
-        CtMethod f2 = CtMethod.make(getFunctionDeclaration(functionName, functionType, returnType), cc);
-        cc.addMethod(f2);
-        return f2;
-    }
 
 
 }

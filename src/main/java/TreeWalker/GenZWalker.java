@@ -7,6 +7,7 @@ import Utils.InitializationUtils;
 import javassist.*;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 
 public class GenZWalker extends GenzBaseListener {
 
@@ -70,7 +71,56 @@ public class GenZWalker extends GenzBaseListener {
         //methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 
         isGlobalScope = false;
-        String methodName = ctx.typesWithVoid().getText();
+        String methodReturnType = ctx.typesWithVoid().getText();
+        methodReturnType = InitializationUtils.getType(methodReturnType, true);
+
+        String methodName = ctx.ID().getText();
+
+        GenzParser.ParameterListContext parameterList = ctx.parameterList();
+
+        LinkedHashMap<String, Types> variableTypeMap = new LinkedHashMap<>();
+
+        if (parameterList != null) {
+
+            if (parameterList.parameter() != null) {
+
+                Types type = InitializationUtils.getParameterType(parameterList.parameter());
+                String variableName = parameterList.parameter().ID().getText();
+
+                variableTypeMap.put(variableName, type);
+
+                GenzParser.ParameterListChoiceContext choiceContext = parameterList.parameterListChoice();
+                while (choiceContext != null && choiceContext.parameter() != null) {
+                    type = InitializationUtils.getParameterType(choiceContext.parameter());
+                    variableName = choiceContext.parameter().ID().getText();
+
+                    variableTypeMap.put(variableName, type);
+
+                    choiceContext = choiceContext.parameterListChoice();
+                }
+
+
+            }
+
+        }
+
+        StringBuilder parameterString = new StringBuilder();
+        for (String variableName : variableTypeMap.keySet()) {
+            Types variableType = variableTypeMap.get(variableName);
+            if (variableType.isArray()) {
+                parameterString.append(variableType.getDataType()).append("[] ").append(variableName).append(", ");
+            } else {
+                parameterString.append(variableType.getDataType()).append(" ").append(variableName).append(", ");
+            }
+        }
+
+        if (parameterString.length() > 0) {
+            parameterString.delete(parameterString.length() - 2, parameterString.length());
+        }
+
+        currentMethodCode = "public static " + methodReturnType + " " + methodName + "(" + parameterString + ") {";
+
+
 
     }
 
@@ -78,6 +128,14 @@ public class GenZWalker extends GenzBaseListener {
     public void exitMethodBody(GenzParser.MethodBodyContext ctx) {
         super.exitMethodBody(ctx);
         isGlobalScope = true;
+        currentMethodCode += "}";
+        try {
+            System.out.println(currentMethodCode);
+            CtMethod method = CtNewMethod.make(currentMethodCode, cc);
+            cc.addMethod(method);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -105,7 +163,7 @@ public class GenZWalker extends GenzBaseListener {
                         .initializationOfVariable();
 
         //if final
-        boolean isForever = ctx.forever() != null;
+        boolean isForever = ctx.forever() != null && ctx.forever().FOREVER() != null;
 
         //final
         Types type = InitializationUtils.getTypeData(ctx.typesWithArray());
@@ -114,9 +172,6 @@ public class GenZWalker extends GenzBaseListener {
         //if not null, then there is an initialization
         if (valuesContext != null) {
 
-            System.out.println(valuesContext.getText());
-            System.out.println(valuesContext.values() + " asdass");
-
             String value = "";
 
             if (valuesContext.values() != null) {
@@ -124,10 +179,19 @@ public class GenZWalker extends GenzBaseListener {
 
                     //not an array
                     value = valuesContext.values().valuesWithoutArray().getText();
+                    //if boolean
+                    if (type.getDataType().equals("boolean")) {
+                        if (value.equals("fax")) {
+                            value = "true";
+                        } else if (value.equals("cap")) {
+                            value = "false";
+                        } else {
+                            throw new RuntimeException("Invalid value for boolean");
+                        }
+                    }
 
                 } else {
                     String arrayString = valuesContext.values().arrayValues().getText();
-                    System.out.println(arrayString);
                     if (arrayString.contains("fax") || arrayString.contains("cap")) {
 
                         if (!type.getDataType().equals("boolean")) {
@@ -160,15 +224,29 @@ public class GenZWalker extends GenzBaseListener {
                 if (isGlobalScope) {
                     //String variableName, String variableType, String variableValue, CtClass cc
                     try {
-                        InitializationUtils.createVariableGlobal(variableName, type.getDataType(), value, cc, isForever, type.isArray());
+                        InitializationUtils.createVariableGlobal(variableName, value, cc, isForever, type);
+                        return;
                     } catch (CannotCompileException e) {
                         System.out.println("Cannot compile global variable");
                         e.printStackTrace();
                     }
                 } else {
+                    currentMethodCode += InitializationUtils.createVariableLocal(variableName, value, cc, isForever, type);
+                    return;
                 }
             }
+        }
 
+        if (isGlobalScope) {
+            //String variableName, String variableType, String variableValue, CtClass cc
+            try {
+                InitializationUtils.createVariableGlobal(variableName, null, cc, isForever, type);
+            } catch (CannotCompileException e) {
+                System.out.println("Cannot compile global variable");
+                e.printStackTrace();
+            }
+        } else {
+             currentMethodCode += InitializationUtils.createVariableLocal(variableName, null, cc, isForever, type);
         }
 
     }
