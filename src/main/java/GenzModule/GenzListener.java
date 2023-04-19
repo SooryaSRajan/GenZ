@@ -468,45 +468,25 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitConditionalStatement(GenzParser.ConditionalStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#conditionBooleans}.
+	 * Enter a parse tree produced by {@link GenzParser#binaryOperands}.
 	 * @param ctx the parse tree
 	 */
-	void enterConditionBooleans(GenzParser.ConditionBooleansContext ctx);
+	void enterBinaryOperands(GenzParser.BinaryOperandsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#conditionBooleans}.
+	 * Exit a parse tree produced by {@link GenzParser#binaryOperands}.
 	 * @param ctx the parse tree
 	 */
-	void exitConditionBooleans(GenzParser.ConditionBooleansContext ctx);
+	void exitBinaryOperands(GenzParser.BinaryOperandsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#conditionStatement}.
+	 * Enter a parse tree produced by {@link GenzParser#notOperand}.
 	 * @param ctx the parse tree
 	 */
-	void enterConditionStatement(GenzParser.ConditionStatementContext ctx);
+	void enterNotOperand(GenzParser.NotOperandContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#conditionStatement}.
+	 * Exit a parse tree produced by {@link GenzParser#notOperand}.
 	 * @param ctx the parse tree
 	 */
-	void exitConditionStatement(GenzParser.ConditionStatementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#conditionalChoice}.
-	 * @param ctx the parse tree
-	 */
-	void enterConditionalChoice(GenzParser.ConditionalChoiceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#conditionalChoice}.
-	 * @param ctx the parse tree
-	 */
-	void exitConditionalChoice(GenzParser.ConditionalChoiceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#mod}.
-	 * @param ctx the parse tree
-	 */
-	void enterMod(GenzParser.ModContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#mod}.
-	 * @param ctx the parse tree
-	 */
-	void exitMod(GenzParser.ModContext ctx);
+	void exitNotOperand(GenzParser.NotOperandContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#conditionalOperations}.
 	 * @param ctx the parse tree
@@ -577,4 +557,14 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDiv(GenzParser.DivContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 */
+	void enterMod(GenzParser.ModContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 */
+	void exitMod(GenzParser.ModContext ctx);
 }

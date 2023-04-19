@@ -340,28 +340,14 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConditionBooleans(GenzParser.ConditionBooleansContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBinaryOperands(GenzParser.BinaryOperandsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConditionStatement(GenzParser.ConditionStatementContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitConditionalChoice(GenzParser.ConditionalChoiceContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitMod(GenzParser.ModContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNotOperand(GenzParser.NotOperandContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -411,4 +397,11 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitDiv(GenzParser.DivContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMod(GenzParser.ModContext ctx) { return visitChildren(ctx); }
 }

@@ -4,64 +4,64 @@ grammar Genz;
 codeEntry: globalStatementsRecursive genz globalStatementsRecursive;
 genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
-//internal statememts
+//Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | loop | isThisBlock | outputStmt | inputStmt | expr; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | loop | isThisBlock | outputStmt | inputStmt | methodCall; //TODO: Add acceptable blocks like loops and conditionals
 
-//global statements, can only be functions or variable declaration
+//Global Statements, can only be functions or variable declaration
 globalStatementsRecursive: globalStatements globalStatementsRecursive | ;
 globalStatements: variableDeclaration | methodBody;
 
-//values with array creation - only during initialization
+//Values with Array Creation - only during initialization
 values: valuesWithoutArray | arrayValues; //actual values
 valuesWithoutArray: STRING_TYPE | INT_TYPE | FLOAT_TYPE | CHAR_TYPE | FAX | CAP;
 arrayValues: CURLY_OPEN arrayValuesRecursive CURLY_CLOSED;
 arrayValuesRecursive: valuesWithoutArray COMMA arrayValuesRecursive | valuesWithoutArray;
 
-//variable declaration
+//Variable Declaration
 variableDeclaration: TIS variableDeclarationSelection OF typesWithArray forever;
 variableDeclarationSelection: ID initializationOfVariable;
 initializationOfVariable: BE values | ;
 
-//forever - final
+//Forever - final
 forever: FOREVER | ; //final declaration
 
-//array declaration
+//Array Declaration
 typesWithArray: types arrayChoice;
 arrayChoice: HIGHKEY arraySize | ;
 arraySize: integerIDChoice | ;
 
-//types for variable
+//Types for Variable
 types: STRING | INT | FLOAT | DOUBLE | CHARACTER | BOOLEAN; //type keywords
 
-//array indexing:
+//Array Indexing:
 arrayIndexing: ID GIV integerIDChoice;
 
 //Choice for array indexing / creation
 integerIDChoice: INT_TYPE | ID;
 
-//Variable assignment
+//Variable Assignment
 variableAssignment: ID BE variableAssignmentInner; //assigning to a variable
 variableAssignmentInner: expr | conditionalStatement;
 
-//parameter list for methods
+//Parameter List for Methods
 parameterList: parameter parameterListChoice | ;
 parameterListChoice: COMMA parameter parameterListChoice  | ;
 parameter: ID OF typesWithArray;
 
-//method body declaration
+//Method Body Declaration
 methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 typesWithVoid: typesWithArray | NOOB; //type keywords with void
 
-//loop:
+//Loop:
 loop: DO ME FROM expr TO expr loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
 loopVairable: TIS BE ID | ;
 
-//output statement:
+//Output Statement:
 outputStmt: GIVBACK expr;
 inputStmt: GIMME ID;
 
-//eppressions
+//Expressions
 expr : term expressionInner;
 expressionInner: add term expressionInner | sub term expressionInner | mod term expressionInner | ;
 term : factor termMultDivFactor;
@@ -74,27 +74,30 @@ factor : valuesWithoutArray
 
 getExpressionID: ID;
 
-//conditonal blocks:
+//Conditonal Blocks:
 isThisBlock: IS TIS BRACKET_OPEN conditionalStatement BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED orIsThisMehBlock;
 orIsThisMehBlock: orIsThisBlock orIsThisMehBlock | mehBlock | ;
 orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatement BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 
-//method CALL
+//Method CALL
 methodCall: ID BRACKET_OPEN parameterCallList BRACKET_CLOSE;
 parameterCallList: expr parameterCallListChoice | ;
 parameterCallListChoice: commaBlock expr parameterCallListChoice | ;
 
 commaBlock: COMMA;
 
-//conditions for loops and if
-conditionalStatement : conditionStatement conditionBooleans
-   | NOT_CONDT conditionalStatement;
-conditionBooleans: AND_CONDT conditionalStatement | OR_CONDT conditionalStatement | ;
+//Conditional Statements:
+conditionalStatement
+ : lp conditionalStatement rp
+ | notOperand conditionalStatement
+ | conditionalStatement conditionalOperations conditionalStatement
+ | conditionalStatement binaryOperands conditionalStatement
+ | expr
+ ;
 
-//condition statement can either be odd or expressiosn with conditions
-conditionStatement : expr conditionalChoice;
-conditionalChoice:  conditionalOperations expr | ;
+binaryOperands: AND_CONDT | OR_CONDT;
+notOperand: NOT_CONDT;
 
 //operations for contitions
 conditionalOperations : LT
@@ -152,9 +155,6 @@ LATER: 'later';
 FROM: 'from';
 TO: 'to';
 FOREVER: 'forever'; //final
-OR_CONDT: '||';
-AND_CONDT: '&&';
-NOT_CONDT: '!';
 
 //IO:
 GIMME: 'gimme';
@@ -177,7 +177,7 @@ INT_TYPE: [0]|[1-9]+[0-9]*|'-'[1-9]+[0-9]*;
 FLOAT_TYPE: [0]|[1-9]+[0-9]*'.'[0-9]+|'-'[1-9]+[0-9]*'.'[0-9]+;
 CHAR_TYPE: '\''([a-zA-Z0-9_ ])'\'';
 
-//Bracketchars
+//BRACKETS
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 CURLY_OPEN: '{';
@@ -198,12 +198,14 @@ GT: '>';
 LT: '<';
 GTE: '>=';
 LTE: '<=';
-
+OR_CONDT: '||';
+AND_CONDT: '&&';
+NOT_CONDT: '!';
 
 //VARIABLE NAME
 ID: ([a-zA-Z_][a-zA-Z0-9_]*);
 
-//Comments
+//COMMENTS
 COMMENT: ('8=>'([a-zA-Z0-9_ ]|~[a-zA-Z0-9\n])*) -> skip;
 COMMENT_MULTILINE: ('8==>'([a-zA-Z0-9_ ]|~[a-zA-Z0-9])*'<==8') -> skip;
 

@@ -287,29 +287,17 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionalStatement(GenzParser.ConditionalStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#conditionBooleans}.
+	 * Visit a parse tree produced by {@link GenzParser#binaryOperands}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitConditionBooleans(GenzParser.ConditionBooleansContext ctx);
+	T visitBinaryOperands(GenzParser.BinaryOperandsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#conditionStatement}.
+	 * Visit a parse tree produced by {@link GenzParser#notOperand}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitConditionStatement(GenzParser.ConditionStatementContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#conditionalChoice}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConditionalChoice(GenzParser.ConditionalChoiceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#mod}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMod(GenzParser.ModContext ctx);
+	T visitNotOperand(GenzParser.NotOperandContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#conditionalOperations}.
 	 * @param ctx the parse tree
@@ -352,4 +340,10 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDiv(GenzParser.DivContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMod(GenzParser.ModContext ctx);
 }

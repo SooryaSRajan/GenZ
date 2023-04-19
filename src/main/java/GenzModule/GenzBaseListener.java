@@ -569,49 +569,25 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConditionBooleans(GenzParser.ConditionBooleansContext ctx) { }
+	@Override public void enterBinaryOperands(GenzParser.BinaryOperandsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConditionBooleans(GenzParser.ConditionBooleansContext ctx) { }
+	@Override public void exitBinaryOperands(GenzParser.BinaryOperandsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConditionStatement(GenzParser.ConditionStatementContext ctx) { }
+	@Override public void enterNotOperand(GenzParser.NotOperandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConditionStatement(GenzParser.ConditionStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterConditionalChoice(GenzParser.ConditionalChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitConditionalChoice(GenzParser.ConditionalChoiceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMod(GenzParser.ModContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMod(GenzParser.ModContext ctx) { }
+	@Override public void exitNotOperand(GenzParser.NotOperandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -696,6 +672,18 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDiv(GenzParser.DivContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMod(GenzParser.ModContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMod(GenzParser.ModContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
