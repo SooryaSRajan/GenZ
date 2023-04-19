@@ -6,7 +6,7 @@ genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | loop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | loop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement; //TODO: Add acceptable blocks like loops and conditionals
 
 //Global Statements, can only be functions or variable declaration
 globalStatementsRecursive: globalStatements globalStatementsRecursive | ;
@@ -57,9 +57,10 @@ typesWithVoid: typesWithArray | NOOB; //type keywords with void
 loop: DO ME FROM expressionGrammar TO expressionGrammar loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
 loopVairable: TIS BE ID | ;
 
-//Output Statement:
-outputStmt: GIVBACK expressionGrammar;
-inputStmt: GIMME ID;
+//IO Statements:
+outputStmt: PRINT outputChoices;
+outputChoices: conditionalStatement | expressionGrammar;
+inputStmt: INPUT ID;
 
 //Expressions
 expressionGrammar: expr;
@@ -76,10 +77,8 @@ factor : valuesWithoutArray
 getExpressionID: ID;
 
 //Conditonal Blocks:
-
 ifElseIfElseBlock: isThisBlock elseIfBlock;
 elseIfBlock: orIsThisBlock elseIfBlock | mehBlock | ;
-
 isThisBlock: IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
@@ -88,10 +87,12 @@ mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 methodCall: ID BRACKET_OPEN parameterCallList BRACKET_CLOSE;
 parameterCallList: expressionGrammar parameterCallListChoice | ;
 parameterCallListChoice: commaBlock expressionGrammar parameterCallListChoice | ;
-
 commaBlock: COMMA;
 
-//TODO: Export condiitonal statement to get separate callback
+//Method Return:
+returnStatement: RETURN returnValue;
+returnValue: expressionGrammar | conditionalStatementEntry | ;
+
 //Conditional Statements:
 conditionalStatementEntry: conditionalStatement;
 conditionalStatement
@@ -163,8 +164,11 @@ TO: 'to';
 FOREVER: 'forever'; //final
 
 //IO:
-GIMME: 'gimme';
-GIVBACK: 'givBack';
+INPUT: 'gimme';
+PRINT: 'expose';
+
+//return
+RETURN: 'givBack';
 
 //TYPES
 STRING: 'string';
@@ -179,9 +183,11 @@ NOOB: 'noob'; //void
 FAX: 'fax';
 CAP: 'cap';
 STRING_TYPE: ('"'([a-zA-Z0-9_ ]|~[a-zA-Z0-9\n])*'"');
+FLOAT_TYPE: '-'? (DIGITS '.' DIGITS | '.' DIGITS | DIGITS '.') ;
 INT_TYPE: [0]|[1-9]+[0-9]*|'-'[1-9]+[0-9]*;
-FLOAT_TYPE: [0]|[1-9]+[0-9]*'.'[0-9]+|'-'[1-9]+[0-9]*'.'[0-9]+;
 CHAR_TYPE: '\''([a-zA-Z0-9_ ])'\'';
+
+fragment DIGITS : [0-9]+ ;
 
 //BRACKETS
 BRACKET_OPEN: '(';

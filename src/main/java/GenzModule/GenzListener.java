@@ -308,6 +308,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitOutputStmt(GenzParser.OutputStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#outputChoices}.
+	 * @param ctx the parse tree
+	 */
+	void enterOutputChoices(GenzParser.OutputChoicesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#outputChoices}.
+	 * @param ctx the parse tree
+	 */
+	void exitOutputChoices(GenzParser.OutputChoicesContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#inputStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -477,6 +487,26 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCommaBlock(GenzParser.CommaBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(GenzParser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(GenzParser.ReturnStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#returnValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnValue(GenzParser.ReturnValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#returnValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnValue(GenzParser.ReturnValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#conditionalStatementEntry}.
 	 * @param ctx the parse tree

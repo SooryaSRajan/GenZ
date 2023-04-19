@@ -49,7 +49,6 @@ public class GenZWalker extends GenzBaseListener {
     @Override
     public void enterGenz(GenzParser.GenzContext ctx) {
         super.enterGenz(ctx);
-        //append public static void main(String[] args) { to currentMethodCode
         currentMethodCode = "public static void main(String[] args) {";
     }
 
@@ -69,8 +68,6 @@ public class GenZWalker extends GenzBaseListener {
     @Override
     public void enterMethodBody(GenzParser.MethodBodyContext ctx) {
         super.enterMethodBody(ctx);
-
-        //methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 
         isGlobalScope = false;
         String methodReturnType = ctx.typesWithVoid().getText();
@@ -122,6 +119,41 @@ public class GenZWalker extends GenzBaseListener {
 
         currentMethodCode = "public static " + methodReturnType + " " + methodName + "(" + parameterString + ") {";
 
+    }
+
+    //method call, no assignment here.
+    //methodCall
+
+
+    @Override
+    public void enterMethodCall(GenzParser.MethodCallContext ctx) {
+        super.enterMethodCall(ctx);
+
+        String methodName = ctx.ID().getText();
+        StringBuilder methodCall = new StringBuilder(methodName + "(");
+
+        GenzParser.ParameterCallListContext parameterList = ctx.parameterCallList();
+        if(parameterList != null) {
+            if (parameterList.expressionGrammar() != null) {
+                ParseTreeWalker walker = new ParseTreeWalker();
+                ExpressionWalker expressionWalker = new ExpressionWalker();
+                walker.walk(expressionWalker, parameterList.expressionGrammar());
+                methodCall.append(expressionWalker.getExpression());
+
+                GenzParser.ParameterCallListChoiceContext choiceContext = parameterList.parameterCallListChoice();
+                while (choiceContext != null && choiceContext.expressionGrammar() != null) {
+                    walker = new ParseTreeWalker();
+                    expressionWalker = new ExpressionWalker();
+                    walker.walk(expressionWalker, choiceContext.expressionGrammar());
+                    methodCall.append(", ").append(expressionWalker.getExpression());
+                    choiceContext = choiceContext.parameterCallListChoice();
+                }
+
+            }
+        }
+
+        methodCall.append(");");
+        currentMethodCode += methodCall.toString();
 
     }
 
@@ -137,6 +169,29 @@ public class GenZWalker extends GenzBaseListener {
         } catch (CannotCompileException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void enterReturnStatement(GenzParser.ReturnStatementContext ctx) {
+        super.enterReturnStatement(ctx);
+        String returnStatement = "return ";
+        if (ctx.returnValue() != null) {
+
+            if(ctx.returnValue().expressionGrammar() != null) {
+                ParseTreeWalker walker = new ParseTreeWalker();
+                ExpressionWalker expressionWalker = new ExpressionWalker();
+                walker.walk(expressionWalker, ctx.returnValue().expressionGrammar());
+                returnStatement += expressionWalker.getExpression();
+            }
+            else if(ctx.returnValue().conditionalStatementEntry() != null) {
+                ParseTreeWalker walker = new ParseTreeWalker();
+                ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+                walker.walk(conditionalStatementWalker, ctx.returnValue().conditionalStatementEntry());
+                returnStatement += conditionalStatementWalker.getConditionalStatement();
+            }
+        }
+        returnStatement += ";";
+        currentMethodCode += returnStatement;
     }
 
     @Override
@@ -250,6 +305,57 @@ public class GenZWalker extends GenzBaseListener {
             currentMethodCode += InitializationUtils.createVariableLocal(variableName, null, cc, isForever, type);
         }
 
+    }
+
+    @Override
+    public void enterOutputStmt(GenzParser.OutputStmtContext ctx) {
+        super.enterOutputStmt(ctx);
+
+        currentMethodCode += "System.out.println(";
+        if(ctx.outputChoices().expressionGrammar() != null){
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ExpressionWalker expressionWalker = new ExpressionWalker();
+            walker.walk(expressionWalker, ctx.outputChoices().expressionGrammar());
+            currentMethodCode += expressionWalker.getExpression();
+        }
+        else if(ctx.outputChoices().conditionalStatement() != null){
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+            walker.walk(conditionalStatementWalker, ctx.outputChoices().conditionalStatement());
+            currentMethodCode += conditionalStatementWalker.getConditionalStatement();
+        }
+
+        currentMethodCode += ");";
+
+    }
+
+    @Override
+    public void enterVariableAssignment(GenzParser.VariableAssignmentContext ctx) {
+        super.enterVariableAssignment(ctx);
+
+        String variableName = ctx.ID().getText();
+
+        GenzParser.VariableAssignmentInnerContext variableAssignmentInnerContext = ctx.variableAssignmentInner();
+
+        String value = null;
+
+        if (variableAssignmentInnerContext.expressionGrammar() != null) {
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ExpressionWalker expressionGrammarWalker = new ExpressionWalker();
+            walker.walk(expressionGrammarWalker, variableAssignmentInnerContext.expressionGrammar());
+            value = expressionGrammarWalker.getExpression();
+
+        } else if (variableAssignmentInnerContext.conditionalStatementEntry() != null) {
+            System.out.println(variableAssignmentInnerContext.conditionalStatementEntry().getText());
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+            walker.walk(conditionalStatementWalker, variableAssignmentInnerContext.conditionalStatementEntry());
+            value = conditionalStatementWalker.getConditionalStatement();
+        }
+
+        if (value != null) {
+            currentMethodCode += variableName + " = " + value + ";";
+        }
     }
 
     //conditionalStatementEntry

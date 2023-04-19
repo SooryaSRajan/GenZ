@@ -377,6 +377,18 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOutputChoices(GenzParser.OutputChoicesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOutputChoices(GenzParser.OutputChoicesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInputStmt(GenzParser.InputStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -576,6 +588,30 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCommaBlock(GenzParser.CommaBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnStatement(GenzParser.ReturnStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnStatement(GenzParser.ReturnStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnValue(GenzParser.ReturnValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnValue(GenzParser.ReturnValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

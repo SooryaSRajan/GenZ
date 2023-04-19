@@ -1,9 +1,37 @@
+tis _myvar of float
+tis boolVar of boolean
+
 bootyCall for noob by sumMethodNew () {
    is tis (1 + 2 >= 2 || (2 - 2) = 0 && 21 <> 21 || !(21 <> 12)) {
+   _myvar be 0.12 + 32 - 123 * 32213
    }
    meh {
+   boolVar be fax || cap && (1 <> 2) && !(2 - 2 = 0)
    }
 }
 
+bootyCall for integer by math(a of integer, b of integer, c of string) {
+
+    is tis(c = "add") {
+        givBack a + b
+    }
+    or is tis (c = "sub") {
+        givBack a - b
+    }
+    or is tis (c = "mul") {
+        givBack a * b
+    }
+    or is tis (c = "div") {
+        givBack a / b
+    }
+   givBack 0
+
+}
+
 genz {
+sumMethodNew()
+expose math(12, 42, "add")
+expose math(12, 42, "sub")
+expose math(12, 42, "mul")
+expose math(12, 42, "div")
 }

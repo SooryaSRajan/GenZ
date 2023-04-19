@@ -74,7 +74,15 @@ public class ConditionalStatementWalker extends GenzBaseListener {
     @Override
     public void enterValuesWithoutArray(GenzParser.ValuesWithoutArrayContext ctx) {
         super.enterValuesWithoutArray(ctx);
-        conditionalStatement += ctx.getText();
+        if(ctx.FAX() != null){
+            conditionalStatement += "true";
+        }
+        else if(ctx.CAP() != null){
+            conditionalStatement += "false";
+        }
+        else{
+            conditionalStatement += ctx.getText();
+        }
     }
 
     @Override
