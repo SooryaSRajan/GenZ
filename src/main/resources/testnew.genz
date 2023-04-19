@@ -10,6 +10,25 @@ bootyCall for noob by sumMethodNew () {
    }
 }
 
+bootyCall for noob by loopStatement(a of integer) {
+    do me from 0 to a cheugy tis be x {
+        expose "THIS IS A STATEMENT " + x
+
+        is tis (x = 5) {
+            expose "LIMIT REACHED, ENDING LOOP " + x
+            yeet
+        }
+
+    }
+}
+
+bootyCall for noob by loopStatementWhile(a of integer) {
+    do me for a > 0 {
+        expose "THIS IS A STATEMENT " + a
+        a be a - 1
+    }
+}
+
 bootyCall for integer by math(a of integer, b of integer, c of string) {
 
     is tis(c = "add") {
@@ -34,4 +53,6 @@ expose math(12, 42, "add")
 expose math(12, 42, "sub")
 expose math(12, 42, "mul")
 expose math(12, 42, "div")
+loopStatement(10)
+loopStatementWhile(10)
 }

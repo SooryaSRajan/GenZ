@@ -1,12 +1,15 @@
 grammar Genz;
 
+//TODO: input.
+
 //variable declaration
 codeEntry: globalStatementsRecursive genz globalStatementsRecursive;
 genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | loop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | forLoop | whileLoop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement | yeetStatement; //TODO: Add acceptable blocks like loops and conditionals
+yeetStatement: YEET;
 
 //Global Statements, can only be functions or variable declaration
 globalStatementsRecursive: globalStatements globalStatementsRecursive | ;
@@ -54,8 +57,11 @@ methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET
 typesWithVoid: typesWithArray | NOOB; //type keywords with void
 
 //Loop:
-loop: DO ME FROM expressionGrammar TO expressionGrammar loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
-loopVairable: TIS BE ID | ;
+forLoop: DO ME FROM expressionGrammar TO expressionGrammar forLoopDirection loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
+forLoopDirection: CHEUGY | ;
+loopVairable: TIS BE ID ;
+
+whileLoop: DO ME FOR conditionalStatement CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //IO Statements:
 outputStmt: PRINT outputChoices;
@@ -162,6 +168,8 @@ LATER: 'later';
 FROM: 'from';
 TO: 'to';
 FOREVER: 'forever'; //final
+YEET: 'yeet'; //break
+CHEUGY: 'cheugy';
 
 //IO:
 INPUT: 'gimme';

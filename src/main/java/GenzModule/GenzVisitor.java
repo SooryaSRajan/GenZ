@@ -35,6 +35,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(GenzParser.StatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#yeetStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitYeetStatement(GenzParser.YeetStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#globalStatementsRecursive}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -173,17 +179,29 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GenzParser#loop}.
+	 * Visit a parse tree produced by {@link GenzParser#forLoop}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLoop(GenzParser.LoopContext ctx);
+	T visitForLoop(GenzParser.ForLoopContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#forLoopDirection}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForLoopDirection(GenzParser.ForLoopDirectionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#loopVairable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLoopVairable(GenzParser.LoopVairableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#whileLoop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileLoop(GenzParser.WhileLoopContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#outputStmt}.
 	 * @param ctx the parse tree

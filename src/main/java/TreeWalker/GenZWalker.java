@@ -28,8 +28,6 @@ public class GenZWalker extends GenzBaseListener {
         this.cc = pool.makeClass(className);
     }
 
-    //TODO: Parse condition blocks, for loops, expressions -> includes array call and function call, conditional statements, input and output.
-
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.enterCodeEntry(ctx);
@@ -133,7 +131,7 @@ public class GenZWalker extends GenzBaseListener {
         StringBuilder methodCall = new StringBuilder(methodName + "(");
 
         GenzParser.ParameterCallListContext parameterList = ctx.parameterCallList();
-        if(parameterList != null) {
+        if (parameterList != null) {
             if (parameterList.expressionGrammar() != null) {
                 ParseTreeWalker walker = new ParseTreeWalker();
                 ExpressionWalker expressionWalker = new ExpressionWalker();
@@ -177,13 +175,12 @@ public class GenZWalker extends GenzBaseListener {
         String returnStatement = "return ";
         if (ctx.returnValue() != null) {
 
-            if(ctx.returnValue().expressionGrammar() != null) {
+            if (ctx.returnValue().expressionGrammar() != null) {
                 ParseTreeWalker walker = new ParseTreeWalker();
                 ExpressionWalker expressionWalker = new ExpressionWalker();
                 walker.walk(expressionWalker, ctx.returnValue().expressionGrammar());
                 returnStatement += expressionWalker.getExpression();
-            }
-            else if(ctx.returnValue().conditionalStatementEntry() != null) {
+            } else if (ctx.returnValue().conditionalStatementEntry() != null) {
                 ParseTreeWalker walker = new ParseTreeWalker();
                 ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
                 walker.walk(conditionalStatementWalker, ctx.returnValue().conditionalStatementEntry());
@@ -312,13 +309,12 @@ public class GenZWalker extends GenzBaseListener {
         super.enterOutputStmt(ctx);
 
         currentMethodCode += "System.out.println(";
-        if(ctx.outputChoices().expressionGrammar() != null){
+        if (ctx.outputChoices().expressionGrammar() != null) {
             ParseTreeWalker walker = new ParseTreeWalker();
             ExpressionWalker expressionWalker = new ExpressionWalker();
             walker.walk(expressionWalker, ctx.outputChoices().expressionGrammar());
             currentMethodCode += expressionWalker.getExpression();
-        }
-        else if(ctx.outputChoices().conditionalStatement() != null){
+        } else if (ctx.outputChoices().conditionalStatement() != null) {
             ParseTreeWalker walker = new ParseTreeWalker();
             ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
             walker.walk(conditionalStatementWalker, ctx.outputChoices().conditionalStatement());
@@ -401,5 +397,59 @@ public class GenZWalker extends GenzBaseListener {
         currentMethodCode += "}";
     }
 
+    //loops
+    //for loop
+    @Override
+    public void enterForLoop(GenzParser.ForLoopContext ctx) {
+        super.enterForLoop(ctx);
 
+        ParseTreeWalker walker = new ParseTreeWalker();
+        ExpressionWalker expressionWalker = new ExpressionWalker();
+        walker.walk(expressionWalker, ctx.expressionGrammar(0));
+        String expressionOne = expressionWalker.getExpression();
+
+        walker = new ParseTreeWalker();
+        expressionWalker = new ExpressionWalker();
+        walker.walk(expressionWalker, ctx.expressionGrammar(1));
+        String expressionTwo = expressionWalker.getExpression();
+
+        String variableName = ctx.loopVairable().ID().getText();
+
+        if (ctx.forLoopDirection() != null && ctx.forLoopDirection().CHEUGY() != null) {
+            currentMethodCode += "for(int " + variableName + " = " + expressionTwo + "; " + variableName + " > " + expressionOne + "; " + variableName + "--){";
+        } else {
+            currentMethodCode += "for(int " + variableName + " = " + expressionOne + "; " + variableName + " < " + expressionTwo + "; " + variableName + "++){";
+        }
+
+
+    }
+
+    @Override
+    public void exitForLoop(GenzParser.ForLoopContext ctx) {
+        super.exitForLoop(ctx);
+        currentMethodCode += "}";
+    }
+
+    @Override
+    public void enterWhileLoop(GenzParser.WhileLoopContext ctx) {
+        super.enterWhileLoop(ctx);
+
+        ParseTreeWalker walker = new ParseTreeWalker();
+        ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+        walker.walk(conditionalStatementWalker, ctx.conditionalStatement());
+        currentMethodCode += "while (" + conditionalStatementWalker.getConditionalStatement() + ") {";
+
+    }
+
+    @Override
+    public void exitWhileLoop(GenzParser.WhileLoopContext ctx) {
+        super.exitWhileLoop(ctx);
+        currentMethodCode += "}";
+    }
+
+    @Override
+    public void enterYeetStatement(GenzParser.YeetStatementContext ctx) {
+        super.enterYeetStatement(ctx);
+        currentMethodCode += "break;";
+    }
 }

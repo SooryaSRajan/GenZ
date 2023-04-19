@@ -65,6 +65,18 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterYeetStatement(GenzParser.YeetStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitYeetStatement(GenzParser.YeetStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGlobalStatementsRecursive(GenzParser.GlobalStatementsRecursiveContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -341,13 +353,25 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoop(GenzParser.LoopContext ctx) { }
+	@Override public void enterForLoop(GenzParser.ForLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoop(GenzParser.LoopContext ctx) { }
+	@Override public void exitForLoop(GenzParser.ForLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForLoopDirection(GenzParser.ForLoopDirectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForLoopDirection(GenzParser.ForLoopDirectionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -360,6 +384,18 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLoopVairable(GenzParser.LoopVairableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhileLoop(GenzParser.WhileLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhileLoop(GenzParser.WhileLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -48,6 +48,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitStatement(GenzParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#yeetStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterYeetStatement(GenzParser.YeetStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#yeetStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitYeetStatement(GenzParser.YeetStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#globalStatementsRecursive}.
 	 * @param ctx the parse tree
 	 */
@@ -278,15 +288,25 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitTypesWithVoid(GenzParser.TypesWithVoidContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GenzParser#loop}.
+	 * Enter a parse tree produced by {@link GenzParser#forLoop}.
 	 * @param ctx the parse tree
 	 */
-	void enterLoop(GenzParser.LoopContext ctx);
+	void enterForLoop(GenzParser.ForLoopContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GenzParser#loop}.
+	 * Exit a parse tree produced by {@link GenzParser#forLoop}.
 	 * @param ctx the parse tree
 	 */
-	void exitLoop(GenzParser.LoopContext ctx);
+	void exitForLoop(GenzParser.ForLoopContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#forLoopDirection}.
+	 * @param ctx the parse tree
+	 */
+	void enterForLoopDirection(GenzParser.ForLoopDirectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#forLoopDirection}.
+	 * @param ctx the parse tree
+	 */
+	void exitForLoopDirection(GenzParser.ForLoopDirectionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#loopVairable}.
 	 * @param ctx the parse tree
@@ -297,6 +317,16 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLoopVairable(GenzParser.LoopVairableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#whileLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileLoop(GenzParser.WhileLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#whileLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileLoop(GenzParser.WhileLoopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#outputStmt}.
 	 * @param ctx the parse tree
