@@ -42,7 +42,7 @@ integerIDChoice: INT_TYPE | ID;
 
 //Variable Assignment
 variableAssignment: ID BE variableAssignmentInner; //assigning to a variable
-variableAssignmentInner: expr | conditionalStatement;
+variableAssignmentInner: expressionGrammar | conditionalStatementEntry;
 
 //Parameter List for Methods
 parameterList: parameter parameterListChoice | ;
@@ -54,14 +54,15 @@ methodBody: BOOTYCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET
 typesWithVoid: typesWithArray | NOOB; //type keywords with void
 
 //Loop:
-loop: DO ME FROM expr TO expr loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
+loop: DO ME FROM expressionGrammar TO expressionGrammar loopVairable CURLY_OPEN statementRecursive CURLY_CLOSED;
 loopVairable: TIS BE ID | ;
 
 //Output Statement:
-outputStmt: GIVBACK expr;
+outputStmt: GIVBACK expressionGrammar;
 inputStmt: GIMME ID;
 
 //Expressions
+expressionGrammar: expr;
 expr : term expressionInner;
 expressionInner: add term expressionInner | sub term expressionInner | mod term expressionInner | ;
 term : factor termMultDivFactor;
@@ -75,25 +76,27 @@ factor : valuesWithoutArray
 getExpressionID: ID;
 
 //Conditonal Blocks:
-isThisBlock: IS TIS BRACKET_OPEN conditionalStatement BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED orIsThisMehBlock;
+isThisBlock: IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED orIsThisMehBlock;
 orIsThisMehBlock: orIsThisBlock orIsThisMehBlock | mehBlock | ;
-orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatement BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
+orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Method CALL
 methodCall: ID BRACKET_OPEN parameterCallList BRACKET_CLOSE;
-parameterCallList: expr parameterCallListChoice | ;
-parameterCallListChoice: commaBlock expr parameterCallListChoice | ;
+parameterCallList: expressionGrammar parameterCallListChoice | ;
+parameterCallListChoice: commaBlock expressionGrammar parameterCallListChoice | ;
 
 commaBlock: COMMA;
 
+//TODO: Export condiitonal statement to get separate callback
 //Conditional Statements:
+conditionalStatementEntry: conditionalStatement;
 conditionalStatement
  : lp conditionalStatement rp
  | notOperand conditionalStatement
  | conditionalStatement conditionalOperations conditionalStatement
  | conditionalStatement binaryOperands conditionalStatement
- | expr
+ | expressionGrammar
  ;
 
 binaryOperands: AND_CONDT | OR_CONDT;

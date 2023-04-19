@@ -2,6 +2,7 @@ package TreeWalker;
 
 import GenzModule.GenzBaseListener;
 import GenzModule.GenzParser;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 public class ExpressionWalker extends GenzBaseListener {
 
@@ -16,10 +17,14 @@ public class ExpressionWalker extends GenzBaseListener {
     }
 
     @Override
-    public void exitExpr(GenzParser.ExprContext ctx) {
-        super.exitExpr(ctx);
-        if(callback != null) callback.onExpression(expression);
+    public void exitEveryRule(ParserRuleContext ctx) {
+        if (ctx.getChildCount() == 0) {
+            System.out.println("EVERY RULE: " + ctx.getText() + " " + ctx.getChildCount());
+            if (callback != null) callback.onExpression(expression);
+            expression = "";
+        }
     }
+
 
     @Override
     public void enterAdd(GenzParser.AddContext ctx) {

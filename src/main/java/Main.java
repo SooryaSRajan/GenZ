@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String pathToFile = "src/main/resources/test.genz";
+        String pathToFile = "src/main/resources/test-new.genz";
         if (pathToFile == null) {
             throw new IOException("No file path provided");
         } else if (!pathToFile.endsWith(".genz")) {

@@ -30,17 +30,16 @@ public class GenZWalker extends GenzBaseListener {
 
     //TODO: Parse condition blocks, for loops, expressions -> includes array call and function call, conditional statements, input and output.
 
-
-    @Override
-    public void enterExpr(GenzParser.ExprContext ctx) {
-        super.enterExpr(ctx);
-        //TODO: Parse expression using walker in blocks where expressions is used.
-        ExpressionWalker expressionWalker = new ExpressionWalker(expression -> {
-            System.out.println("Expression: " + expression);
-        });
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(expressionWalker, ctx);
-    }
+//
+//    @Override
+//    public void enterExpr(GenzParser.ExprContext ctx) {
+//        super.enterExpr(ctx);
+//        //TODO: Parse expression using walker in blocks where expressions is used.
+//        ExpressionWalker expressionWalker = new ExpressionWalker(expression -> {
+//        });
+//        ParseTreeWalker walker = new ParseTreeWalker();
+//        walker.walk(expressionWalker, ctx);
+//    }
 
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
@@ -263,5 +262,19 @@ public class GenZWalker extends GenzBaseListener {
         }
 
     }
+
+    //conditionalStatementEntry
+
+
+    @Override
+    public void enterConditionalStatementEntry(GenzParser.ConditionalStatementEntryContext ctx) {
+        super.enterConditionalStatementEntry(ctx);
+
+        ParseTreeWalker walker = new ParseTreeWalker();
+        System.out.println("IsThisBlock: ");
+        ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker((conditionStatement -> System.out.println("IsThisBlock: " + conditionStatement)));
+        walker.walk(conditionalStatementWalker, ctx);
+    }
+
 
 }

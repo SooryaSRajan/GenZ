@@ -318,6 +318,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitInputStmt(GenzParser.InputStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#expressionGrammar}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionGrammar(GenzParser.ExpressionGrammarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#expressionGrammar}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionGrammar(GenzParser.ExpressionGrammarContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#expr}.
 	 * @param ctx the parse tree
 	 */
@@ -457,6 +467,16 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCommaBlock(GenzParser.CommaBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#conditionalStatementEntry}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionalStatementEntry(GenzParser.ConditionalStatementEntryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#conditionalStatementEntry}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionalStatementEntry(GenzParser.ConditionalStatementEntryContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#conditionalStatement}.
 	 * @param ctx the parse tree
