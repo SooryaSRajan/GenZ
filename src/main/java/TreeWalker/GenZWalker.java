@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 public class GenZWalker extends GenzBaseListener {
 
@@ -20,6 +21,7 @@ public class GenZWalker extends GenzBaseListener {
     boolean isGlobalScope = false;
 
     String currentMethodCode = "";
+    String scannerName = "";
 
     public GenZWalker(String className, String directory) {
         this.className = className;
@@ -32,6 +34,17 @@ public class GenZWalker extends GenzBaseListener {
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.enterCodeEntry(ctx);
         System.out.println("Starting compilation of " + className + "");
+        //Add Scanner sc = new Scanner(System.in); and import to classs
+        try {
+            pool.importPackage("java.util.Scanner");
+            scannerName = UUID.randomUUID().toString().replace("-", "");
+            scannerName = "sc_" + scannerName;
+            CtField field = CtField.make("Scanner " + scannerName + " = new Scanner(System.in);", cc);
+            field.setModifiers(Modifier.PUBLIC | Modifier.STATIC);
+            cc.addField(field);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -480,5 +493,33 @@ public class GenZWalker extends GenzBaseListener {
     public void enterYeetStatement(GenzParser.YeetStatementContext ctx) {
         super.enterYeetStatement(ctx);
         currentMethodCode += "break;";
+    }
+
+    //inputStmt: INPUT ID inputForArray OF types;
+
+    @Override
+    public void enterInputStmt(GenzParser.InputStmtContext ctx) {
+        super.enterInputStmt(ctx);
+
+        String variableName = ctx.ID().getText();
+        String type = ctx.types().getText();
+
+        type = switch (type) {
+            case "integer" -> "Int";
+            case "string" -> "Line";
+            case "double" -> "Double";
+            case "float" -> "Float";
+            case "boolean" -> "Boolean";
+            default -> throw new IllegalStateException("Unexpected value: " + type);
+        };
+
+        if (ctx.inputForArray() != null && ctx.inputForArray().integerIDChoice() != null) {
+            String index = ctx.inputForArray().integerIDChoice().getText();
+            String array = variableName + "[" + index + "]";
+            currentMethodCode += array + " = " + scannerName + ".next" + type + "();";
+        } else {
+            currentMethodCode += variableName + " = " + scannerName + ".next" + type + "();";
+        }
+
     }
 }

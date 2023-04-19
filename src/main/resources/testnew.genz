@@ -73,9 +73,12 @@ genz {
         expose array giv x
     }
 
+    tis varx of integer
+    gimme varx of integer
+    expose varx
+
     do me from 0 to size of arrayEmpty - 1 tis be x {
-        8=>arrayAssignment: ID GIV integerIDChoice BE variableAssignmentInner;
-        arrayEmpty giv x be x * 2
+        gimme arrayEmpty giv x of integer
     }
 
     printArray(arrayEmpty, size of arrayEmpty - 1)

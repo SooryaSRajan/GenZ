@@ -277,6 +277,13 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitInputForArray(GenzParser.InputForArrayContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitExpressionGrammar(GenzParser.ExpressionGrammarContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

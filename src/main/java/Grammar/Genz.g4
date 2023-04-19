@@ -72,7 +72,8 @@ whileLoop: DO ME FOR conditionalStatement CURLY_OPEN statementRecursive CURLY_CL
 //IO Statements:
 outputStmt: PRINT outputChoices;
 outputChoices: conditionalStatement | expressionGrammar;
-inputStmt: INPUT ID;
+inputStmt: INPUT ID inputForArray OF types;
+inputForArray: GIV integerIDChoice | ;
 
 //Expressions
 expressionGrammar: expr;

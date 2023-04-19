@@ -233,6 +233,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInputStmt(GenzParser.InputStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#inputForArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputForArray(GenzParser.InputForArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#expressionGrammar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

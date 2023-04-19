@@ -378,6 +378,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitInputStmt(GenzParser.InputStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#inputForArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputForArray(GenzParser.InputForArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#inputForArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputForArray(GenzParser.InputForArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#expressionGrammar}.
 	 * @param ctx the parse tree
 	 */

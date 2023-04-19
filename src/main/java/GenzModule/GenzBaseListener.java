@@ -461,6 +461,18 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInputForArray(GenzParser.InputForArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputForArray(GenzParser.InputForArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpressionGrammar(GenzParser.ExpressionGrammarContext ctx) { }
 	/**
 	 * {@inheritDoc}
