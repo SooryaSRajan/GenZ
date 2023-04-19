@@ -135,4 +135,11 @@ public class ConditionalStatementWalker extends GenzBaseListener {
         conditionalStatement += ", ";
     }
 
+    @Override
+    public void enterGetArraySize(GenzParser.GetArraySizeContext ctx) {
+        super.enterGetArraySize(ctx);
+        String arrayName = ctx.ID().getText();
+        conditionalStatement += arrayName + ".length";
+    }
+
 }

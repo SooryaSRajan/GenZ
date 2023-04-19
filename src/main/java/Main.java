@@ -35,7 +35,6 @@ public class Main {
 
         //parser
         GenzParser parser = new GenzParser(token);
-//        parser.codeEntry();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(new GenZWalker(fileName, pathOfDirectory), parser.codeEntry());
 

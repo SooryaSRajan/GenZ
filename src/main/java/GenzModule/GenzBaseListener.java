@@ -257,6 +257,18 @@ public class GenzBaseListener implements GenzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterGetArraySize(GenzParser.GetArraySizeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGetArraySize(GenzParser.GetArraySizeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIntegerIDChoice(GenzParser.IntegerIDChoiceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -288,6 +300,18 @@ public class GenzBaseListener implements GenzListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArrayAssignment(GenzParser.ArrayAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayAssignment(GenzParser.ArrayAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

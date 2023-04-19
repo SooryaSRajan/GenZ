@@ -1,12 +1,14 @@
 tis _myvar of float
 tis boolVar of boolean
+tis array be {1312, 24, 3, 41, 5} of integer highkey
+tis arrayEmpty of integer highkey 20
 
-bootyCall for noob by sumMethodNew () {
-   is tis (1 + 2 >= 2 || (2 - 2) = 0 && 21 <> 21 || !(21 <> 12)) {
-   _myvar be 0.12 + 32 - 123 * 32213
+bootyCall for noob by sumMethodNew (var of integer) {
+   is tis (var + 2 >= 2 || (2 - var) = 0 && 21 <> 21 || !(var <> 12)) {
+    _myvar be 0.12 + 32 - var * 32213
    }
    meh {
-   boolVar be fax || cap && (1 <> 2) && !(2 - 2 = 0)
+    boolVar be fax || cap && (1 <> var) && !(var - 2 = 0)
    }
 }
 
@@ -20,6 +22,14 @@ bootyCall for noob by loopStatement(a of integer) {
         }
 
     }
+}
+
+bootyCall for noob by printArray(a of integer highkey, b of integer) {
+
+    do me from 0 to b tis be x {
+        expose "Array in index " + x + " is " + a giv x
+    }
+
 }
 
 bootyCall for noob by loopStatementWhile(a of integer) {
@@ -48,11 +58,26 @@ bootyCall for integer by math(a of integer, b of integer, c of string) {
 }
 
 genz {
-sumMethodNew()
-expose math(12, 42, "add")
-expose math(12, 42, "sub")
-expose math(12, 42, "mul")
-expose math(12, 42, "div")
-loopStatement(10)
-loopStatementWhile(10)
+    sumMethodNew(12)
+    expose boolVar
+    expose _myvar
+    expose math(12, 42, "add")
+    expose math(12, 42, "sub")
+    expose math(12, 42, "mul")
+    expose math(12, 42, "div")
+    loopStatement(10)
+    loopStatementWhile(10)
+    printArray(array, 4)
+
+    do me from 0 to size of array - 1 tis be x {
+        expose array giv x
+    }
+
+    do me from 0 to size of arrayEmpty - 1 tis be x {
+        8=>arrayAssignment: ID GIV integerIDChoice BE variableAssignmentInner;
+        arrayEmpty giv x be x * 2
+    }
+
+    printArray(arrayEmpty, size of arrayEmpty - 1)
+
 }

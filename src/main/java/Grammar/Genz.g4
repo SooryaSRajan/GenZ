@@ -8,7 +8,7 @@ genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | forLoop | whileLoop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement | yeetStatement; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | arrayAssignment | forLoop | whileLoop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement | yeetStatement;
 yeetStatement: YEET;
 
 //Global Statements, can only be functions or variable declaration
@@ -40,12 +40,18 @@ types: STRING | INT | FLOAT | DOUBLE | CHARACTER | BOOLEAN; //type keywords
 //Array Indexing:
 arrayIndexing: ID GIV integerIDChoice;
 
+//Array Size:
+getArraySize: ARRAY_SIZE OF ID;
+
 //Choice for array indexing / creation
 integerIDChoice: INT_TYPE | ID;
 
 //Variable Assignment
 variableAssignment: ID BE variableAssignmentInner; //assigning to a variable
 variableAssignmentInner: expressionGrammar | conditionalStatementEntry;
+
+//Array Assignment
+arrayAssignment: ID GIV integerIDChoice BE variableAssignmentInner; //assigning to an array
 
 //Parameter List for Methods
 parameterList: parameter parameterListChoice | ;
@@ -78,6 +84,7 @@ factor : valuesWithoutArray
     | lp expr rp
     | getExpressionID
     | arrayIndexing
+    | getArraySize
     | methodCall;
 
 getExpressionID: ID;
@@ -170,6 +177,7 @@ TO: 'to';
 FOREVER: 'forever'; //final
 YEET: 'yeet'; //break
 CHEUGY: 'cheugy';
+ARRAY_SIZE: 'size';
 
 //IO:
 INPUT: 'gimme';

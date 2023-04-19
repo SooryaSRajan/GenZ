@@ -354,6 +354,35 @@ public class GenZWalker extends GenzBaseListener {
         }
     }
 
+    @Override
+    public void enterArrayAssignment(GenzParser.ArrayAssignmentContext ctx) {
+        super.enterArrayAssignment(ctx);
+
+        String arrayName = ctx.ID().getText();
+        String index = ctx.integerIDChoice().getText();
+
+        String array = arrayName + "[" + index + "]";
+        String value = null;
+
+        if (ctx.variableAssignmentInner().expressionGrammar() != null) {
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ExpressionWalker expressionGrammarWalker = new ExpressionWalker();
+            walker.walk(expressionGrammarWalker, ctx.variableAssignmentInner().expressionGrammar());
+            value = expressionGrammarWalker.getExpression();
+        } else if (ctx.variableAssignmentInner().conditionalStatementEntry() != null) {
+            ParseTreeWalker walker = new ParseTreeWalker();
+            ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+            walker.walk(conditionalStatementWalker, ctx.variableAssignmentInner().conditionalStatementEntry());
+            value = conditionalStatementWalker.getConditionalStatement();
+        }
+
+        if (value != null) {
+            currentMethodCode += array + " = " + value + ";";
+        }
+
+
+    }
+
     //conditionalStatementEntry
     @Override
     public void enterIsThisBlock(GenzParser.IsThisBlockContext ctx) {
@@ -416,9 +445,9 @@ public class GenZWalker extends GenzBaseListener {
         String variableName = ctx.loopVairable().ID().getText();
 
         if (ctx.forLoopDirection() != null && ctx.forLoopDirection().CHEUGY() != null) {
-            currentMethodCode += "for(int " + variableName + " = " + expressionTwo + "; " + variableName + " > " + expressionOne + "; " + variableName + "--){";
+            currentMethodCode += "for(int " + variableName + " = " + expressionTwo + "; " + variableName + " >= " + expressionOne + "; " + variableName + "--){";
         } else {
-            currentMethodCode += "for(int " + variableName + " = " + expressionOne + "; " + variableName + " < " + expressionTwo + "; " + variableName + "++){";
+            currentMethodCode += "for(int " + variableName + " = " + expressionOne + "; " + variableName + " <= " + expressionTwo + "; " + variableName + "++){";
         }
 
 

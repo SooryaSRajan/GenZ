@@ -109,4 +109,11 @@ public class ExpressionWalker extends GenzBaseListener {
         super.enterCommaBlock(ctx);
         expression += ", ";
     }
+
+    @Override
+    public void enterGetArraySize(GenzParser.GetArraySizeContext ctx) {
+        super.enterGetArraySize(ctx);
+        String arrayName = ctx.ID().getText();
+        expression += arrayName + ".length";
+    }
 }

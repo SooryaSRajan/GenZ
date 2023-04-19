@@ -131,6 +131,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#getArraySize}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGetArraySize(GenzParser.GetArraySizeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#integerIDChoice}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -148,6 +154,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#arrayAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayAssignment(GenzParser.ArrayAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#parameterList}.
 	 * @param ctx the parse tree

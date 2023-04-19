@@ -208,6 +208,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitArrayIndexing(GenzParser.ArrayIndexingContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#getArraySize}.
+	 * @param ctx the parse tree
+	 */
+	void enterGetArraySize(GenzParser.GetArraySizeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#getArraySize}.
+	 * @param ctx the parse tree
+	 */
+	void exitGetArraySize(GenzParser.GetArraySizeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#integerIDChoice}.
 	 * @param ctx the parse tree
 	 */
@@ -237,6 +247,16 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableAssignmentInner(GenzParser.VariableAssignmentInnerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#arrayAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayAssignment(GenzParser.ArrayAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#arrayAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayAssignment(GenzParser.ArrayAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#parameterList}.
 	 * @param ctx the parse tree
