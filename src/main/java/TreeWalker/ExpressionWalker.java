@@ -46,6 +46,12 @@ public class ExpressionWalker extends GenzBaseListener {
     }
 
     @Override
+    public void enterMod(GenzParser.ModContext ctx) {
+        super.enterMod(ctx);
+        expression += " % ";
+    }
+
+    @Override
     public void enterValuesWithoutArray(GenzParser.ValuesWithoutArrayContext ctx) {
         super.enterValuesWithoutArray(ctx);
         expression += ctx.getText();

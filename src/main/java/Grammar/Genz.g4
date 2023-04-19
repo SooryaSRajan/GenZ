@@ -23,9 +23,6 @@ variableDeclaration: TIS variableDeclarationSelection OF typesWithArray forever;
 variableDeclarationSelection: ID initializationOfVariable;
 initializationOfVariable: BE values | ;
 
-
-//TODO: Modify variable declaration for arrays such that either new array or pre-initialized array can be used, not both in a single line
-
 //forever - final
 forever: FOREVER | ; //final declaration
 
@@ -66,7 +63,7 @@ inputStmt: GIMME ID;
 
 //eppressions
 expr : term expressionInner;
-expressionInner: add term expressionInner | sub term expressionInner | ;
+expressionInner: add term expressionInner | sub term expressionInner | mod term expressionInner | ;
 term : factor termMultDivFactor;
 termMultDivFactor: mul factor termMultDivFactor | div factor termMultDivFactor | ;
 factor : valuesWithoutArray
@@ -125,6 +122,9 @@ mul: MULTIPLICATION
 div: DIVISION
     ;
 
+mod: MOD
+    ;
+
 //Spaces and non-graphical characters
 WS: ('\n' | '\t' | ' ') -> skip;
 
@@ -177,9 +177,6 @@ INT_TYPE: [0]|[1-9]+[0-9]*|'-'[1-9]+[0-9]*;
 FLOAT_TYPE: [0]|[1-9]+[0-9]*'.'[0-9]+|'-'[1-9]+[0-9]*'.'[0-9]+;
 CHAR_TYPE: '\''([a-zA-Z0-9_ ])'\'';
 
-//VARIABLE NAME
-ID: ([a-zA-Z_][a-zA-Z0-9_]*);
-
 //Bracketchars
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
@@ -196,10 +193,15 @@ MULTIPLICATION: '*';
 DIVISION: '/';
 EQUAL: '=';
 NOTEQUAL: '<>';
+MOD: 'mod';
 GT: '>';
 LT: '<';
 GTE: '>=';
 LTE: '<=';
+
+
+//VARIABLE NAME
+ID: ([a-zA-Z_][a-zA-Z0-9_]*);
 
 //Comments
 COMMENT: ('8=>'([a-zA-Z0-9_ ]|~[a-zA-Z0-9\n])*) -> skip;

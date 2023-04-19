@@ -305,6 +305,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionalChoice(GenzParser.ConditionalChoiceContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMod(GenzParser.ModContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#conditionalOperations}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

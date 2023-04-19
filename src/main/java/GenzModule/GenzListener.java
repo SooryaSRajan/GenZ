@@ -498,6 +498,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitConditionalChoice(GenzParser.ConditionalChoiceContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 */
+	void enterMod(GenzParser.ModContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#mod}.
+	 * @param ctx the parse tree
+	 */
+	void exitMod(GenzParser.ModContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#conditionalOperations}.
 	 * @param ctx the parse tree
 	 */
