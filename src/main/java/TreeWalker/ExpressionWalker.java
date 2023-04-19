@@ -2,29 +2,17 @@ package TreeWalker;
 
 import GenzModule.GenzBaseListener;
 import GenzModule.GenzParser;
-import org.antlr.v4.runtime.ParserRuleContext;
 
 public class ExpressionWalker extends GenzBaseListener {
 
     String expression = "";
-    ExpressionCallback callback;
 
     public ExpressionWalker() {
     }
 
-    public ExpressionWalker(ExpressionCallback callback) {
-        this.callback = callback;
+    public String getExpression() {
+        return expression;
     }
-
-    @Override
-    public void exitEveryRule(ParserRuleContext ctx) {
-        if (ctx.getChildCount() == 0) {
-            System.out.println("EVERY RULE: " + ctx.getText() + " " + ctx.getChildCount());
-            if (callback != null) callback.onExpression(expression);
-            expression = "";
-        }
-    }
-
 
     @Override
     public void enterAdd(GenzParser.AddContext ctx) {

@@ -388,6 +388,26 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitGetExpressionID(GenzParser.GetExpressionIDContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#ifElseIfElseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfElseIfElseBlock(GenzParser.IfElseIfElseBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#ifElseIfElseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfElseIfElseBlock(GenzParser.IfElseIfElseBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GenzParser#elseIfBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseIfBlock(GenzParser.ElseIfBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#elseIfBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseIfBlock(GenzParser.ElseIfBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#isThisBlock}.
 	 * @param ctx the parse tree
 	 */
@@ -397,16 +417,6 @@ public interface GenzListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIsThisBlock(GenzParser.IsThisBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GenzParser#orIsThisBlock}.
 	 * @param ctx the parse tree

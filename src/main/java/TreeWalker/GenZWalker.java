@@ -30,17 +30,6 @@ public class GenZWalker extends GenzBaseListener {
 
     //TODO: Parse condition blocks, for loops, expressions -> includes array call and function call, conditional statements, input and output.
 
-//
-//    @Override
-//    public void enterExpr(GenzParser.ExprContext ctx) {
-//        super.enterExpr(ctx);
-//        //TODO: Parse expression using walker in blocks where expressions is used.
-//        ExpressionWalker expressionWalker = new ExpressionWalker(expression -> {
-//        });
-//        ParseTreeWalker walker = new ParseTreeWalker();
-//        walker.walk(expressionWalker, ctx);
-//    }
-
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.enterCodeEntry(ctx);
@@ -264,16 +253,46 @@ public class GenZWalker extends GenzBaseListener {
     }
 
     //conditionalStatementEntry
-
+    @Override
+    public void enterIsThisBlock(GenzParser.IsThisBlockContext ctx) {
+        super.enterIsThisBlock(ctx);
+        ParseTreeWalker walker = new ParseTreeWalker();
+        ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+        walker.walk(conditionalStatementWalker, ctx.conditionalStatementEntry());
+        currentMethodCode += "if (" + conditionalStatementWalker.getConditionalStatement() + ") {";
+    }
 
     @Override
-    public void enterConditionalStatementEntry(GenzParser.ConditionalStatementEntryContext ctx) {
-        super.enterConditionalStatementEntry(ctx);
+    public void exitIsThisBlock(GenzParser.IsThisBlockContext ctx) {
+        super.exitIsThisBlock(ctx);
+        currentMethodCode += "}";
+    }
 
+    @Override
+    public void enterOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) {
+        super.enterOrIsThisBlock(ctx);
         ParseTreeWalker walker = new ParseTreeWalker();
-        System.out.println("IsThisBlock: ");
-        ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker((conditionStatement -> System.out.println("IsThisBlock: " + conditionStatement)));
-        walker.walk(conditionalStatementWalker, ctx);
+        ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
+        walker.walk(conditionalStatementWalker, ctx.conditionalStatementEntry());
+        currentMethodCode += "else if (" + conditionalStatementWalker.getConditionalStatement() + ") {";
+    }
+
+    @Override
+    public void exitOrIsThisBlock(GenzParser.OrIsThisBlockContext ctx) {
+        super.exitOrIsThisBlock(ctx);
+        currentMethodCode += "}";
+    }
+
+    @Override
+    public void enterMehBlock(GenzParser.MehBlockContext ctx) {
+        super.enterMehBlock(ctx);
+        currentMethodCode += "else {";
+    }
+
+    @Override
+    public void exitMehBlock(GenzParser.MehBlockContext ctx) {
+        super.exitMehBlock(ctx);
+        currentMethodCode += "}";
     }
 
 

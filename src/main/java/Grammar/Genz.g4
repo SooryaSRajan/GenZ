@@ -6,7 +6,7 @@ genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | loop | isThisBlock | outputStmt | inputStmt | methodCall; //TODO: Add acceptable blocks like loops and conditionals
+statement: variableDeclaration | variableAssignment | loop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall; //TODO: Add acceptable blocks like loops and conditionals
 
 //Global Statements, can only be functions or variable declaration
 globalStatementsRecursive: globalStatements globalStatementsRecursive | ;
@@ -76,8 +76,11 @@ factor : valuesWithoutArray
 getExpressionID: ID;
 
 //Conditonal Blocks:
-isThisBlock: IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED orIsThisMehBlock;
-orIsThisMehBlock: orIsThisBlock orIsThisMehBlock | mehBlock | ;
+
+ifElseIfElseBlock: isThisBlock elseIfBlock;
+elseIfBlock: orIsThisBlock elseIfBlock | mehBlock | ;
+
+isThisBlock: IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 

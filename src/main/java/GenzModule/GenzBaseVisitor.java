@@ -284,14 +284,21 @@ public class GenzBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIsThisBlock(GenzParser.IsThisBlockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfElseIfElseBlock(GenzParser.IfElseIfElseBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitElseIfBlock(GenzParser.ElseIfBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIsThisBlock(GenzParser.IsThisBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

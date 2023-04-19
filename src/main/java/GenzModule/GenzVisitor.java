@@ -239,17 +239,23 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGetExpressionID(GenzParser.GetExpressionIDContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#ifElseIfElseBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfElseIfElseBlock(GenzParser.IfElseIfElseBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GenzParser#elseIfBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseIfBlock(GenzParser.ElseIfBlockContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#isThisBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIsThisBlock(GenzParser.IsThisBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GenzParser#orIsThisMehBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrIsThisMehBlock(GenzParser.OrIsThisMehBlockContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GenzParser#orIsThisBlock}.
 	 * @param ctx the parse tree

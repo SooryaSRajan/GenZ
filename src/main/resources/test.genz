@@ -35,7 +35,7 @@ bootyCall for noob by sumMethodNew () {
    sumMethod()
    sumMethodNew(2 + 13123 - (14141323 * 4), _functionRes(1, 2) + arr giv 1)
 
-   is tis ((a mod b) >= 2 || c mod (d * arr giv 12 + _functionRes(3, arr giv 32)) <> 3 && !((a + b) && c) ) {
+   is tis ((a mod b) >= 2 || c mod (d * arr giv 12 + _functionRes(3, arr giv 32)) <> 3 && !((a + b) && c = b) ) {
    }
 
    meh {
