@@ -27,15 +27,13 @@ public class GenZWalker extends GenzBaseListener {
         this.className = className;
         this.directory = directory;
         this.pool = ClassPool.getDefault();
-
-        className = className.replaceAll("[^a-zA-Z0-9]", "");
         this.cc = pool.makeClass(className);
     }
 
     @Override
     public void enterCodeEntry(GenzParser.CodeEntryContext ctx) {
         super.enterCodeEntry(ctx);
-        System.out.println("Compiling " + className + "");
+        System.out.println("Compiling " + className + " in " + directory);
         //Add Scanner sc = new Scanner(System.in); and import to classs
         try {
             pool.importPackage("java.util.Scanner");
@@ -400,7 +398,6 @@ public class GenZWalker extends GenzBaseListener {
         ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
         walker.walk(conditionalStatementWalker, ctx.conditionalStatementEntry());
         currentMethodCode += "if (" + conditionalStatementWalker.getConditionalStatement() + ") {";
-        System.out.println(currentMethodCode);
     }
 
     @Override

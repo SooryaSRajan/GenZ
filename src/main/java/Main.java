@@ -6,22 +6,29 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String pathToFile = "src/main/resources/stack.genz";
+        String pathToFile = args[0];
         if (pathToFile == null) {
             throw new IOException("No file path provided");
         } else if (!pathToFile.endsWith(".genz")) {
             throw new IOException("File is not a .genz file");
         }
 
+        File f = new File(pathToFile);
+        if(!(f.exists() && !f.isDirectory())) {
+            throw new IOException("File does not exist");
+        }
+
         //Get name of file, also consider for cases where there are no /
         String fileName = pathToFile.substring(pathToFile.lastIndexOf("/") + 1, pathToFile.lastIndexOf("."));
         fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
+        fileName = fileName.replaceAll("[^a-zA-Z0-9]", "");
 
         String pathOfDirectory = pathToFile.substring(0, pathToFile.lastIndexOf("/"));
 
@@ -32,6 +39,7 @@ public class Main {
 
         //Gets tokens for the input file
         CommonTokenStream token = new CommonTokenStream(lexer);
+
 
         //parser
         GenzParser parser = new GenzParser(token);
