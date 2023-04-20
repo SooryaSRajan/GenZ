@@ -1,2 +1,3 @@
 target
-src/main/java/TestClasses/*.java
+src/main/java/TestClasses/*.jav
+src/main/resources/*.class

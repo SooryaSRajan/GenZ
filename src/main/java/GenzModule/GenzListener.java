@@ -508,6 +508,16 @@ public interface GenzListener extends ParseTreeListener {
 	 */
 	void exitMehBlock(GenzParser.MehBlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GenzParser#statementMethodCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementMethodCall(GenzParser.StatementMethodCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GenzParser#statementMethodCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementMethodCall(GenzParser.StatementMethodCallContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GenzParser#methodCall}.
 	 * @param ctx the parse tree
 	 */

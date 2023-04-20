@@ -311,6 +311,12 @@ public interface GenzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMehBlock(GenzParser.MehBlockContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GenzParser#statementMethodCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementMethodCall(GenzParser.StatementMethodCallContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GenzParser#methodCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

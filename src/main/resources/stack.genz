@@ -1,0 +1,109 @@
+tis stack of integer highkey 5
+tis sizeVar be -1 of integer
+
+bootyCall for boolean by isFull() {
+
+    is tis (sizeVar = 49) {
+        givBack fax
+    }
+
+    givBack cap
+
+}
+
+bootyCall for boolean by isEmpty() {
+
+    is tis (sizeVar = -1) {
+      givBack fax
+    }
+
+    givBack cap
+
+}
+
+bootyCall for integer by top() {
+
+    is tis (!isFull() && !isEmpty()) {
+        givBack stack giv sizeVar
+    }
+
+    givBack -1
+
+}
+
+bootyCall for boolean by push(value of integer) {
+
+    is tis (!isFull()){
+        sizeVar be sizeVar + 1
+        stack giv sizeVar be value
+        givBack fax
+    }
+
+    givBack cap
+
+}
+
+bootyCall for boolean by pop() {
+
+    is tis (!isEmpty()){
+        sizeVar be sizeVar - 1
+        givBack fax
+    }
+
+    givBack cap
+}
+
+genz{
+
+    expose "Size of stack is: " + size of stack
+    expose "Current stack size: " + sizeVar
+
+    tis inputType be 0 of integer
+
+    do me for(fax){
+        expose "Enter a choice: 1 - push, 2 - pop, 3 - print, 4 - exit: "
+        gimme inputType of integer
+
+        is tis(inputType = 1){
+            expose "Enter value to push: "
+            tis inputValue be -1 of integer
+            gimme inputValue of integer
+
+            is tis(push(inputValue)) {
+                expose "Pushed value"
+            }
+            meh {
+                expose "Stack full, could not push value"
+            }
+
+
+        }
+
+        or is tis(inputType = 2){
+            expose "Popping value: " + top()
+            is tis(pop()) {
+                expose "Popped value"
+            }
+            meh {
+                expose "Stack empty, could not pop value"
+            }
+        }
+        or is tis(inputType = 3){
+
+            expose "Printing stack: "
+            do me from 0 to sizeVar tis be x {
+                expose "Value at index " + x + " is: " + stack giv x
+            }
+
+        }
+        or is tis(inputType = 4){
+            expose "Quitting program"
+            yeet
+        }
+        meh{
+            expose "Invalid option"
+        }
+
+    }
+
+}

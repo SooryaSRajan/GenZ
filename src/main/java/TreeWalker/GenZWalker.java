@@ -134,18 +134,27 @@ public class GenZWalker extends GenzBaseListener {
 
     }
 
-    //method call, no assignment here.
-    //methodCall
-
+    @Override
+    public void exitMethodBody(GenzParser.MethodBodyContext ctx) {
+        super.exitMethodBody(ctx);
+        isGlobalScope = true;
+        currentMethodCode += "}";
+        try {
+            CtMethod method = CtNewMethod.make(currentMethodCode, cc);
+            cc.addMethod(method);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
-    public void enterMethodCall(GenzParser.MethodCallContext ctx) {
-        super.enterMethodCall(ctx);
+    public void enterStatementMethodCall(GenzParser.StatementMethodCallContext ctx) {
+        super.enterStatementMethodCall(ctx);
 
-        String methodName = ctx.ID().getText();
+        String methodName = ctx.methodCall().ID().getText();
         StringBuilder methodCall = new StringBuilder(methodName + "(");
 
-        GenzParser.ParameterCallListContext parameterList = ctx.parameterCallList();
+        GenzParser.ParameterCallListContext parameterList = ctx.methodCall().parameterCallList();
         if (parameterList != null) {
             if (parameterList.expressionGrammar() != null) {
                 ParseTreeWalker walker = new ParseTreeWalker();
@@ -168,19 +177,6 @@ public class GenZWalker extends GenzBaseListener {
         methodCall.append(");");
         currentMethodCode += methodCall.toString();
 
-    }
-
-    @Override
-    public void exitMethodBody(GenzParser.MethodBodyContext ctx) {
-        super.exitMethodBody(ctx);
-        isGlobalScope = true;
-        currentMethodCode += "}";
-        try {
-            CtMethod method = CtNewMethod.make(currentMethodCode, cc);
-            cc.addMethod(method);
-        } catch (CannotCompileException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -404,6 +400,7 @@ public class GenZWalker extends GenzBaseListener {
         ConditionalStatementWalker conditionalStatementWalker = new ConditionalStatementWalker();
         walker.walk(conditionalStatementWalker, ctx.conditionalStatementEntry());
         currentMethodCode += "if (" + conditionalStatementWalker.getConditionalStatement() + ") {";
+        System.out.println(currentMethodCode);
     }
 
     @Override

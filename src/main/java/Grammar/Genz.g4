@@ -8,7 +8,7 @@ genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Internal Statememts
 statementRecursive: statement statementRecursive | ;
-statement: variableDeclaration | variableAssignment | arrayAssignment | forLoop | whileLoop | ifElseIfElseBlock | outputStmt | inputStmt | methodCall | returnStatement | yeetStatement;
+statement: variableDeclaration | variableAssignment | arrayAssignment | forLoop | whileLoop | ifElseIfElseBlock | outputStmt | inputStmt | statementMethodCall | returnStatement | yeetStatement;
 yeetStatement: YEET;
 
 //Global Statements, can only be functions or variable declaration
@@ -98,6 +98,7 @@ orIsThisBlock: OR IS TIS BRACKET_OPEN conditionalStatementEntry BRACKET_CLOSE CU
 mehBlock: MEH CURLY_OPEN statementRecursive CURLY_CLOSED;
 
 //Method CALL
+statementMethodCall: methodCall;
 methodCall: ID BRACKET_OPEN parameterCallList BRACKET_CLOSE;
 parameterCallList: expressionGrammar parameterCallListChoice | ;
 parameterCallListChoice: commaBlock expressionGrammar parameterCallListChoice | ;
