@@ -1,7 +1,5 @@
 grammar Genz;
 
-//TODO: input.
-
 //variable declaration
 codeEntry: globalStatementsRecursive genz globalStatementsRecursive;
 genz:  GENZ CURLY_OPEN statementRecursive CURLY_CLOSED;
