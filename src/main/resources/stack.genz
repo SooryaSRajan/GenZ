@@ -3,7 +3,7 @@ tis sizeVar be -1 of integer
 
 bootyCall for boolean by isFull() {
 
-    is tis (sizeVar = 49) {
+    is tis (sizeVar = size of stack - 1) {
         givBack fax
     }
 
