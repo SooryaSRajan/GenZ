@@ -1,5 +1,12 @@
-tis stack of integer highkey 5
+tis stack of integer highkey 10
 tis sizeVar be -1 of integer
+
+8==>This is a stack implementation in GenZ.
+    It supports all stack function in a fixed array of size 10.
+    Methods: isFull, isEmpty, push, pop, printArray
+<==8
+
+8=> Single line comment
 
 bootyCall for boolean by isFull() {
 
@@ -51,6 +58,14 @@ bootyCall for boolean by pop() {
     }
 
     givBack cap
+}
+
+bootyCall for noob by printArray(array of integer highkey) {
+
+    do me from 0 to size of array tis be x {
+        expose "Value at index " + x + " is: " + stack giv x
+    }
+
 }
 
 genz{
