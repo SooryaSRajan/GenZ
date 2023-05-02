@@ -1,9 +1,11 @@
+8==> This code will not compile <==8
+
 tis _myvar of float
 tis boolVar of boolean
 tis array be {1312, 24, 3, 41, 5} of integer highkey
 tis arrayEmpty of integer highkey 20
 
-bootyCall for noob by sumMethodNew (var of integer) {
+finesse for noob in sumMethodNew (var of integer) {
    is tis (var + 2 >= 2 || (2 - var) = 0 && 21 <> 21 || !(var <> 12)) {
     _myvar be 0.12 + 32 - var * 32213
    }
@@ -12,70 +14,70 @@ bootyCall for noob by sumMethodNew (var of integer) {
    }
 }
 
-bootyCall for noob by loopStatement(a of integer) {
+finesse for noob in loopStatement(a of integer) {
     do me from 0 to a cheugy tis be x {
-        expose "THIS IS A STATEMENT " + x
+        flex "THIS IS A STATEMENT " + x
 
         is tis (x = 5) {
-            expose "LIMIT REACHED, ENDING LOOP " + x
+            flex "LIMIT REACHED, ENDING LOOP " + x
             yeet
         }
 
     }
 }
 
-bootyCall for noob by printArray(a of integer highkey, b of integer) {
+finesse for noob in printArray(a of integer highkey, b of integer) {
 
     do me from 0 to b tis be x {
-        expose "Array in index " + x + " is " + a giv x
+        flex "Array in index " + x + " is " + a giv x
     }
 
 }
 
-bootyCall for noob by loopStatementWhile(a of integer) {
+finesse for noob in loopStatementWhile(a of integer) {
     do me for a > 0 {
-        expose "THIS IS A STATEMENT " + a
+        flex "THIS IS A STATEMENT " + a
         a be a - 1
     }
 }
 
-bootyCall for integer by math(a of integer, b of integer, c of string) {
+finesse for integer in math(a of integer, b of integer, c of string) {
 
     is tis(c = "add") {
-        givBack a + b
+        clapBack a + b
     }
     or is tis (c = "sub") {
-        givBack a - b
+        clapBack a - b
     }
     or is tis (c = "mul") {
-        givBack a * b
+        clapBack a * b
     }
     or is tis (c = "div") {
-        givBack a / b
+        clapBack a / b
     }
-   givBack 0
+   clapBack 0
 
 }
 
 genz {
     sumMethodNew(12)
-    expose boolVar
-    expose _myvar
-    expose math(12, 42, "add")
-    expose math(12, 42, "sub")
-    expose math(12, 42, "mul")
-    expose math(12, 42, "div")
+    flex boolVar
+    flex _myvar
+    flex math(12, 42, "add")
+    flex math(12, 42, "sub")
+    flex math(12, 42, "mul")
+    flex math(12, 42, "div")
     loopStatement(10)
     loopStatementWhile(10)
     printArray(array, 4)
 
     do me from 0 to size of array - 1 tis be x {
-        expose array giv x
+        flex array giv x
     }
 
     tis varx of integer
     gimme varx of integer
-    expose varx
+    flex varx
 
     do me from 0 to size of arrayEmpty - 1 tis be x {
         gimme arrayEmpty giv x of integer
