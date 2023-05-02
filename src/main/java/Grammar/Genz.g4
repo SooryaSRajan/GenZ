@@ -201,7 +201,7 @@ CAP: 'cap';
 STRING_TYPE: ('"'([a-zA-Z0-9_ ]|~[a-zA-Z0-9\n])*'"');
 FLOAT_TYPE: '-'? (DIGITS '.' DIGITS | '.' DIGITS | DIGITS '.') ;
 INT_TYPE: [0]|[1-9]+[0-9]*|'-'[1-9]+[0-9]*;
-CHAR_TYPE: '\''([a-zA-Z0-9_ ])'\'';
+CHAR_TYPE: '\''([a-zA-Z0-9_ ]|~[a-zA-Z0-9\n])'\'';
 
 fragment DIGITS : [0-9]+ ;
 
