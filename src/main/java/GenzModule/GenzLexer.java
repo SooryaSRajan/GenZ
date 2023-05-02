@@ -18,7 +18,7 @@ public class GenzLexer extends Lexer {
 		new PredictionContextCache();
 	public static final int
 		WS=1, GENZ=2, TIS=3, BE=4, OF=5, WITH=6, HIGHKEY=7, BRO=8, GIV=9, IS=10, 
-		OR=11, MEH=12, FUNCTIONCALL=13, FOR=14, BY=15, DO=16, ME=17, NOW=18, LATER=19, 
+		OR=11, MEH=12, FUNCTIONCALL=13, FOR=14, IN=15, DO=16, ME=17, NOW=18, LATER=19, 
 		FROM=20, TO=21, FOREVER=22, YEET=23, CHEUGY=24, ARRAY_SIZE=25, INPUT=26, 
 		PRINT=27, RETURN=28, STRING=29, INT=30, FLOAT=31, DOUBLE=32, CHARACTER=33, 
 		BOOLEAN=34, NOOB=35, FAX=36, CAP=37, STRING_TYPE=38, FLOAT_TYPE=39, INT_TYPE=40, 
@@ -37,7 +37,7 @@ public class GenzLexer extends Lexer {
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"WS", "GENZ", "TIS", "BE", "OF", "WITH", "HIGHKEY", "BRO", "GIV", "IS", 
-			"OR", "MEH", "FUNCTIONCALL", "FOR", "BY", "DO", "ME", "NOW", "LATER", 
+			"OR", "MEH", "FUNCTIONCALL", "FOR", "IN", "DO", "ME", "NOW", "LATER", 
 			"FROM", "TO", "FOREVER", "YEET", "CHEUGY", "ARRAY_SIZE", "INPUT", "PRINT", 
 			"RETURN", "STRING", "INT", "FLOAT", "DOUBLE", "CHARACTER", "BOOLEAN", 
 			"NOOB", "FAX", "CAP", "STRING_TYPE", "FLOAT_TYPE", "INT_TYPE", "CHAR_TYPE", 
@@ -52,7 +52,7 @@ public class GenzLexer extends Lexer {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, null, "'genz'", "'tis'", "'be'", "'of'", "'with'", "'highkey'", 
-			null, "'giv'", "'is'", "'or'", "'meh'", "'finesse'", "'for'", "'by'", 
+			null, "'giv'", "'is'", "'or'", "'meh'", "'finesse'", "'for'", "'in'", 
 			"'do'", "'me'", "'now'", "'later'", "'from'", "'to'", "'forever'", "'yeet'", 
 			"'cheugy'", "'size'", "'gimme'", "'flex'", "'clapBack'", "'string'", 
 			"'integer'", "'float'", "'double'", "'character'", "'boolean'", "'noob'", 
@@ -65,7 +65,7 @@ public class GenzLexer extends Lexer {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "WS", "GENZ", "TIS", "BE", "OF", "WITH", "HIGHKEY", "BRO", "GIV", 
-			"IS", "OR", "MEH", "FUNCTIONCALL", "FOR", "BY", "DO", "ME", "NOW", "LATER", 
+			"IS", "OR", "MEH", "FUNCTIONCALL", "FOR", "IN", "DO", "ME", "NOW", "LATER", 
 			"FROM", "TO", "FOREVER", "YEET", "CHEUGY", "ARRAY_SIZE", "INPUT", "PRINT", 
 			"RETURN", "STRING", "INT", "FLOAT", "DOUBLE", "CHARACTER", "BOOLEAN", 
 			"NOOB", "FAX", "CAP", "STRING_TYPE", "FLOAT_TYPE", "INT_TYPE", "CHAR_TYPE", 
@@ -290,7 +290,7 @@ public class GenzLexer extends Lexer {
 		"\u00bd\u00be\u0005s\u0000\u0000\u00be\u00bf\u0005e\u0000\u0000\u00bf\u001a"+
 		"\u0001\u0000\u0000\u0000\u00c0\u00c1\u0005f\u0000\u0000\u00c1\u00c2\u0005"+
 		"o\u0000\u0000\u00c2\u00c3\u0005r\u0000\u0000\u00c3\u001c\u0001\u0000\u0000"+
-		"\u0000\u00c4\u00c5\u0005b\u0000\u0000\u00c5\u00c6\u0005y\u0000\u0000\u00c6"+
+		"\u0000\u00c4\u00c5\u0005i\u0000\u0000\u00c5\u00c6\u0005n\u0000\u0000\u00c6"+
 		"\u001e\u0001\u0000\u0000\u0000\u00c7\u00c8\u0005d\u0000\u0000\u00c8\u00c9"+
 		"\u0005o\u0000\u0000\u00c9 \u0001\u0000\u0000\u0000\u00ca\u00cb\u0005m"+
 		"\u0000\u0000\u00cb\u00cc\u0005e\u0000\u0000\u00cc\"\u0001\u0000\u0000"+

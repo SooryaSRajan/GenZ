@@ -57,7 +57,7 @@ parameterListChoice: COMMA parameter parameterListChoice  | ;
 parameter: ID OF typesWithArray;
 
 //Method Body Declaration
-methodBody: FUNCTIONCALL FOR typesWithVoid BY ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
+methodBody: FUNCTIONCALL FOR typesWithVoid IN ID BRACKET_OPEN parameterList BRACKET_CLOSE CURLY_OPEN statementRecursive CURLY_CLOSED;
 typesWithVoid: typesWithArray | NOOB; //type keywords with void
 
 //Loop:
@@ -167,7 +167,7 @@ OR: 'or';
 MEH: 'meh';
 FUNCTIONCALL: 'finesse';
 FOR: 'for';
-BY: 'by';
+IN: 'in';
 DO: 'do';
 ME: 'me';
 NOW: 'now';

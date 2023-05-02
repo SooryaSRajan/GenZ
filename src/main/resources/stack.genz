@@ -8,7 +8,7 @@ tis sizeVar be -1 of integer
 
 8=> Single line comment
 
-finesse for boolean by isFull() {
+finesse for boolean in isFull() {
 
     is tis (sizeVar = size of stack - 1) {
         clapBack fax
@@ -18,7 +18,7 @@ finesse for boolean by isFull() {
 
 }
 
-finesse for boolean by isEmpty() {
+finesse for boolean in isEmpty() {
 
     is tis (sizeVar = -1) {
       clapBack fax
@@ -28,7 +28,7 @@ finesse for boolean by isEmpty() {
 
 }
 
-finesse for integer by top() {
+finesse for integer in top() {
 
     is tis (!isFull() && !isEmpty()) {
         clapBack stack giv sizeVar
@@ -38,7 +38,7 @@ finesse for integer by top() {
 
 }
 
-finesse for boolean by push(value of integer) {
+finesse for boolean in push(value of integer) {
 
     is tis (!isFull()){
         sizeVar be sizeVar + 1
@@ -50,7 +50,7 @@ finesse for boolean by push(value of integer) {
 
 }
 
-finesse for boolean by pop() {
+finesse for boolean in pop() {
 
     is tis (!isEmpty()){
         sizeVar be sizeVar - 1
@@ -60,7 +60,7 @@ finesse for boolean by pop() {
     clapBack cap
 }
 
-finesse for noob by printArray(array of integer highkey) {
+finesse for noob in printArray(array of integer highkey) {
 
     do me from 0 to size of array tis be x {
         flex "Value at index " + x + " is: " + stack giv x
