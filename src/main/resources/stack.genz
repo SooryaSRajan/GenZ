@@ -63,60 +63,60 @@ bootyCall for boolean by pop() {
 bootyCall for noob by printArray(array of integer highkey) {
 
     do me from 0 to size of array tis be x {
-        expose "Value at index " + x + " is: " + stack giv x
+        flex "Value at index " + x + " is: " + stack giv x
     }
 
 }
 
 genz{
 
-    expose "Size of stack is: " + size of stack
-    expose "Current stack size: " + sizeVar
+    flex "Size of stack is: " + size of stack
+    flex "Current stack size: " + sizeVar
 
     tis inputType be 0 of integer
 
     do me for(fax){
-        expose "Enter a choice: 1 - push, 2 - pop, 3 - print, 4 - exit: "
+        flex "Enter a choice: 1 - push, 2 - pop, 3 - print, 4 - exit: "
         gimme inputType of integer
 
         is tis(inputType = 1){
-            expose "Enter value to push: "
+            flex "Enter value to push: "
             tis inputValue be -1 of integer
             gimme inputValue of integer
 
             is tis(push(inputValue)) {
-                expose "Pushed value"
+                flex "Pushed value"
             }
             meh {
-                expose "Stack full, could not push value"
+                flex "Stack full, could not push value"
             }
 
 
         }
 
         or is tis(inputType = 2){
-            expose "Popping value: " + top()
+            flex "Popping value: " + top()
             is tis(pop()) {
-                expose "Popped value"
+                flex "Popped value"
             }
             meh {
-                expose "Stack empty, could not pop value"
+                flex "Stack empty, could not pop value"
             }
         }
         or is tis(inputType = 3){
 
-            expose "Printing stack: "
+            flex "Printing stack: "
             do me from 0 to sizeVar tis be x {
-                expose "Value at index " + x + " is: " + stack giv x
+                flex "Value at index " + x + " is: " + stack giv x
             }
 
         }
         or is tis(inputType = 4){
-            expose "Quitting program"
+            flex "Quitting program"
             yeet
         }
         meh{
-            expose "Invalid option"
+            flex "Invalid option"
         }
 
     }
