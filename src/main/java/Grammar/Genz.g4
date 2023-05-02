@@ -181,7 +181,7 @@ ARRAY_SIZE: 'size';
 
 //IO:
 INPUT: 'gimme';
-PRINT: 'expose';
+PRINT: 'flex';
 
 //return
 RETURN: 'givBack';
