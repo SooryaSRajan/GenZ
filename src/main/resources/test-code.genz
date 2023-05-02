@@ -2,8 +2,8 @@
 
 tis _myvar of float
 tis boolVar of boolean
-tis array be {1312, 24, 3, 41, 5} of integer highkey
-tis arrayEmpty of integer highkey 20
+tis array be {1312, 24, 3, 41, 5} of integer chonky
+tis arrayEmpty of integer chonky 20
 
 finesse for noob in sumMethodNew (var of integer) {
    is tis (var + 2 >= 2 || (2 - var) = 0 && 21 <> 21 || !(var <> 12)) {
@@ -26,7 +26,7 @@ finesse for noob in loopStatement(a of integer) {
     }
 }
 
-finesse for noob in printArray(a of integer highkey, b of integer) {
+finesse for noob in printArray(a of integer chonky, b of integer) {
 
     do me from 0 to b tis be x {
         flex "Array in index " + x + " is " + a giv x
