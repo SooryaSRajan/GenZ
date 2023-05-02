@@ -21,6 +21,6 @@ if ! [ -x "$(command -v java)" ]; then
   exit 1
 fi
 
-java -jar GenZLang-1.0.0-jar-with-dependencies.jar "$file"
+java -jar /usr/local/genz/GenZLang-1.4.1-jar-with-dependencies.jar "$file"
 
 
