@@ -18,7 +18,7 @@ public class GenzParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		WS=1, GENZ=2, TIS=3, BE=4, OF=5, WITH=6, HIGHKEY=7, BRO=8, GIV=9, IS=10, 
-		OR=11, MEH=12, BOOTYCALL=13, FOR=14, BY=15, DO=16, ME=17, NOW=18, LATER=19, 
+		OR=11, MEH=12, FUNCTIONCALL=13, FOR=14, BY=15, DO=16, ME=17, NOW=18, LATER=19, 
 		FROM=20, TO=21, FOREVER=22, YEET=23, CHEUGY=24, ARRAY_SIZE=25, INPUT=26, 
 		PRINT=27, RETURN=28, STRING=29, INT=30, FLOAT=31, DOUBLE=32, CHARACTER=33, 
 		BOOLEAN=34, NOOB=35, FAX=36, CAP=37, STRING_TYPE=38, FLOAT_TYPE=39, INT_TYPE=40, 
@@ -72,7 +72,7 @@ public class GenzParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, null, "'genz'", "'tis'", "'be'", "'of'", "'with'", "'highkey'", 
-			null, "'giv'", "'is'", "'or'", "'meh'", "'bootyCall'", "'for'", "'by'", 
+			null, "'giv'", "'is'", "'or'", "'meh'", "'finesse'", "'for'", "'by'", 
 			"'do'", "'me'", "'now'", "'later'", "'from'", "'to'", "'forever'", "'yeet'", 
 			"'cheugy'", "'size'", "'gimme'", "'flex'", "'givBack'", "'string'", "'integer'", 
 			"'float'", "'double'", "'character'", "'boolean'", "'noob'", "'fax'", 
@@ -85,7 +85,7 @@ public class GenzParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "WS", "GENZ", "TIS", "BE", "OF", "WITH", "HIGHKEY", "BRO", "GIV", 
-			"IS", "OR", "MEH", "BOOTYCALL", "FOR", "BY", "DO", "ME", "NOW", "LATER", 
+			"IS", "OR", "MEH", "FUNCTIONCALL", "FOR", "BY", "DO", "ME", "NOW", "LATER", 
 			"FROM", "TO", "FOREVER", "YEET", "CHEUGY", "ARRAY_SIZE", "INPUT", "PRINT", 
 			"RETURN", "STRING", "INT", "FLOAT", "DOUBLE", "CHARACTER", "BOOLEAN", 
 			"NOOB", "FAX", "CAP", "STRING_TYPE", "FLOAT_TYPE", "INT_TYPE", "CHAR_TYPE", 
@@ -554,7 +554,7 @@ public class GenzParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TIS:
-			case BOOTYCALL:
+			case FUNCTIONCALL:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(168);
@@ -625,7 +625,7 @@ public class GenzParser extends Parser {
 				variableDeclaration();
 				}
 				break;
-			case BOOTYCALL:
+			case FUNCTIONCALL:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(175);
@@ -1099,7 +1099,7 @@ public class GenzParser extends Parser {
 			case GENZ:
 			case TIS:
 			case IS:
-			case BOOTYCALL:
+			case FUNCTIONCALL:
 			case DO:
 			case YEET:
 			case INPUT:
@@ -1221,7 +1221,7 @@ public class GenzParser extends Parser {
 			case GENZ:
 			case TIS:
 			case IS:
-			case BOOTYCALL:
+			case FUNCTIONCALL:
 			case BY:
 			case DO:
 			case FOREVER:
@@ -1871,7 +1871,7 @@ public class GenzParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class MethodBodyContext extends ParserRuleContext {
-		public TerminalNode BOOTYCALL() { return getToken(GenzParser.BOOTYCALL, 0); }
+		public TerminalNode FUNCTIONCALL() { return getToken(GenzParser.FUNCTIONCALL, 0); }
 		public TerminalNode FOR() { return getToken(GenzParser.FOR, 0); }
 		public TypesWithVoidContext typesWithVoid() {
 			return getRuleContext(TypesWithVoidContext.class,0);
@@ -1914,7 +1914,7 @@ public class GenzParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(268);
-			match(BOOTYCALL);
+			match(FUNCTIONCALL);
 			setState(269);
 			match(FOR);
 			setState(270);

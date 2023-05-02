@@ -8,7 +8,7 @@ tis sizeVar be -1 of integer
 
 8=> Single line comment
 
-bootyCall for boolean by isFull() {
+finesse for boolean by isFull() {
 
     is tis (sizeVar = size of stack - 1) {
         givBack fax
@@ -18,7 +18,7 @@ bootyCall for boolean by isFull() {
 
 }
 
-bootyCall for boolean by isEmpty() {
+finesse for boolean by isEmpty() {
 
     is tis (sizeVar = -1) {
       givBack fax
@@ -28,7 +28,7 @@ bootyCall for boolean by isEmpty() {
 
 }
 
-bootyCall for integer by top() {
+finesse for integer by top() {
 
     is tis (!isFull() && !isEmpty()) {
         givBack stack giv sizeVar
@@ -38,7 +38,7 @@ bootyCall for integer by top() {
 
 }
 
-bootyCall for boolean by push(value of integer) {
+finesse for boolean by push(value of integer) {
 
     is tis (!isFull()){
         sizeVar be sizeVar + 1
@@ -50,7 +50,7 @@ bootyCall for boolean by push(value of integer) {
 
 }
 
-bootyCall for boolean by pop() {
+finesse for boolean by pop() {
 
     is tis (!isEmpty()){
         sizeVar be sizeVar - 1
@@ -60,7 +60,7 @@ bootyCall for boolean by pop() {
     givBack cap
 }
 
-bootyCall for noob by printArray(array of integer highkey) {
+finesse for noob by printArray(array of integer highkey) {
 
     do me from 0 to size of array tis be x {
         flex "Value at index " + x + " is: " + stack giv x
