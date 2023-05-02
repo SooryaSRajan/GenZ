@@ -1,0 +1,126 @@
+tis stack of integer chonky 10
+tis sizeVar be -1 of integer
+
+8==>This is a stack implementation in GenZ.
+    It supports all stack function in a fixed array of size 10.
+    Methods: isFull, isEmpty, push, pop, printArray
+<==8
+
+8=> Single line comment
+
+finesse for boolean in isFull() {
+
+    is tis (sizeVar = size of stack - 1) {
+        clapBack fax
+    }
+
+    clapBack cap
+
+}
+
+finesse for boolean in isEmpty() {
+
+    is tis (sizeVar = -1) {
+      clapBack fax
+    }
+
+    clapBack cap
+
+}
+
+finesse for integer in top() {
+
+    is tis (!isFull() && !isEmpty()) {
+        clapBack stack giv sizeVar
+    }
+
+    clapBack -1
+
+}
+
+finesse for boolean in push(value of integer) {
+
+    is tis (!isFull()){
+        sizeVar be sizeVar + 1
+        stack giv sizeVar be value
+        clapBack fax
+    }
+
+    clapBack cap
+
+}
+
+finesse for boolean in pop() {
+
+    is tis (!isEmpty()){
+        sizeVar be sizeVar - 1
+        clapBack fax
+    }
+
+    clapBack cap
+}
+
+finesse for noob in printArray(array of integer chonky) {
+
+    do me from 0 to size of array tis be x {
+        flex "Value at index " + x + " is: " + stack giv x
+    }
+
+}
+
+genz{
+
+    flex "This program is an implementation of stacks"
+
+    flex "Size of stack is: " + size of stack
+    flex "Current stack size: " + sizeVar
+
+    tis inputType be 0 of integer
+
+    do me for(fax){
+        flex "Enter a choice: 1 - push, 2 - pop, 3 - print, 4 - exit: "
+        gimme inputType of integer
+
+        is tis(inputType = 1){
+            flex "Enter value to push: "
+            tis inputValue be -1 of integer
+            gimme inputValue of integer
+
+            is tis(push(inputValue)) {
+                flex "Pushed value"
+            }
+            meh {
+                flex "Stack full, could not push value"
+            }
+
+
+        }
+
+        or is tis(inputType = 2){
+            flex "Popping value: " + top()
+            is tis(pop()) {
+                flex "Popped value"
+            }
+            meh {
+                flex "Stack empty, could not pop value"
+            }
+        }
+        or is tis(inputType = 3){
+
+            flex "Printing stack: "
+            do me from 0 to sizeVar tis be x {
+                flex "Value at index " + x + " is: " + stack giv x
+            }
+
+        }
+        or is tis(inputType = 4){
+            flex "Quitting program"
+            yeet
+        }
+        meh{
+            flex "Invalid option"
+        }
+
+    }
+
+}

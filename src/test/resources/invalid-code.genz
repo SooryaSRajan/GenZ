@@ -1,0 +1,18 @@
+genz {
+
+    8===> This is an invalid comment
+
+    tis 12size be 10 of integer 8=>Invalid variable name
+
+    8=> invalid loop
+    do me from 1 to 12size cheugy {
+        is tis (x mod 2 = 0) {
+            flex "Even"
+        }
+        neh {
+            flex "Odd"
+        }
+        8=> Typo in keyword
+    }
+
+}
