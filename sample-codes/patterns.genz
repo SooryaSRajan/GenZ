@@ -1,0 +1,51 @@
+tis spaceChar be ' ' of character
+tis star be '*' of character
+
+finesse for string in appendSpace(space of integer, starString of string) {
+
+    do me from 0 to space tis be x {
+        starString be starString + spaceChar
+    }
+
+    clapBack starString
+}
+
+finesse for string in spaceStar(length of integer, space of integer) {
+
+    tis starString be "" of string
+
+    length be length - space
+    space be space / 2
+
+    starString be appendSpace(space, starString)
+
+    do me from 0 to length tis be x {
+        starString be starString + star
+    }
+
+    starString be appendSpace(space, starString)
+
+    clapBack starString
+}
+
+genz {
+
+    8=> fill empty space in character declaration
+
+    tis _size be 10 of integer
+
+    do me from 1 to _size cheugy tis be x {
+        is tis (x mod 2 = 0) {
+            flex spaceStar(_size, (_size - x) + 1)
+        }
+    }
+
+    do me from 1 to _size tis be x {
+        is tis (x mod 2 = 0) {
+            flex spaceStar(_size, (_size - x) + 1)
+        }
+    }
+
+
+
+}
