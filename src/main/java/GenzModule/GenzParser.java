@@ -74,11 +74,11 @@ public class GenzParser extends Parser {
 			null, null, "'genz'", "'tis'", "'be'", "'of'", "'with'", "'highkey'", 
 			null, "'giv'", "'is'", "'or'", "'meh'", "'finesse'", "'for'", "'by'", 
 			"'do'", "'me'", "'now'", "'later'", "'from'", "'to'", "'forever'", "'yeet'", 
-			"'cheugy'", "'size'", "'gimme'", "'flex'", "'givBack'", "'string'", "'integer'", 
-			"'float'", "'double'", "'character'", "'boolean'", "'noob'", "'fax'", 
-			"'cap'", null, null, null, null, "'('", "')'", "'{'", "'}'", "','", "'+'", 
-			"'-'", "'*'", "'/'", "'='", "'<>'", "'mod'", "'>'", "'<'", "'>='", "'<='", 
-			"'||'", "'&&'", "'!'"
+			"'cheugy'", "'size'", "'gimme'", "'flex'", "'clapBack'", "'string'", 
+			"'integer'", "'float'", "'double'", "'character'", "'boolean'", "'noob'", 
+			"'fax'", "'cap'", null, null, null, null, "'('", "')'", "'{'", "'}'", 
+			"','", "'+'", "'-'", "'*'", "'/'", "'='", "'<>'", "'mod'", "'>'", "'<'", 
+			"'>='", "'<='", "'||'", "'&&'", "'!'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

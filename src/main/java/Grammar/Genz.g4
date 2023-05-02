@@ -184,7 +184,7 @@ INPUT: 'gimme';
 PRINT: 'flex';
 
 //return
-RETURN: 'givBack';
+RETURN: 'clapBack';
 
 //TYPES
 STRING: 'string';

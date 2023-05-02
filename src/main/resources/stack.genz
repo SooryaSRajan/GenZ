@@ -11,30 +11,30 @@ tis sizeVar be -1 of integer
 finesse for boolean by isFull() {
 
     is tis (sizeVar = size of stack - 1) {
-        givBack fax
+        clapBack fax
     }
 
-    givBack cap
+    clapBack cap
 
 }
 
 finesse for boolean by isEmpty() {
 
     is tis (sizeVar = -1) {
-      givBack fax
+      clapBack fax
     }
 
-    givBack cap
+    clapBack cap
 
 }
 
 finesse for integer by top() {
 
     is tis (!isFull() && !isEmpty()) {
-        givBack stack giv sizeVar
+        clapBack stack giv sizeVar
     }
 
-    givBack -1
+    clapBack -1
 
 }
 
@@ -43,10 +43,10 @@ finesse for boolean by push(value of integer) {
     is tis (!isFull()){
         sizeVar be sizeVar + 1
         stack giv sizeVar be value
-        givBack fax
+        clapBack fax
     }
 
-    givBack cap
+    clapBack cap
 
 }
 
@@ -54,10 +54,10 @@ finesse for boolean by pop() {
 
     is tis (!isEmpty()){
         sizeVar be sizeVar - 1
-        givBack fax
+        clapBack fax
     }
 
-    givBack cap
+    clapBack cap
 }
 
 finesse for noob by printArray(array of integer highkey) {
@@ -69,6 +69,8 @@ finesse for noob by printArray(array of integer highkey) {
 }
 
 genz{
+
+    flex "This program is an implementation of stacks"
 
     flex "Size of stack is: " + size of stack
     flex "Current stack size: " + sizeVar
