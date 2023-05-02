@@ -6,7 +6,7 @@
 
     <groupId>org.ssr</groupId>
     <artifactId>GenZLang</artifactId>
-    <version>1.0.2</version>
+    <version>1.4.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
