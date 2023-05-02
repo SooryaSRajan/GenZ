@@ -17,7 +17,7 @@ public class GenzParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		WS=1, GENZ=2, TIS=3, BE=4, OF=5, WITH=6, HIGHKEY=7, BRO=8, GIV=9, IS=10, 
+		WS=1, GENZ=2, TIS=3, BE=4, OF=5, WITH=6, ARRAY=7, BRO=8, GIV=9, IS=10, 
 		OR=11, MEH=12, FUNCTIONCALL=13, FOR=14, IN=15, DO=16, ME=17, NOW=18, LATER=19, 
 		FROM=20, TO=21, FOREVER=22, YEET=23, CHEUGY=24, ARRAY_SIZE=25, INPUT=26, 
 		PRINT=27, RETURN=28, STRING=29, INT=30, FLOAT=31, DOUBLE=32, CHARACTER=33, 
@@ -71,7 +71,7 @@ public class GenzParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'genz'", "'tis'", "'be'", "'of'", "'with'", "'highkey'", 
+			null, null, "'genz'", "'tis'", "'be'", "'of'", "'with'", "'chonky'", 
 			null, "'giv'", "'is'", "'or'", "'meh'", "'finesse'", "'for'", "'in'", 
 			"'do'", "'me'", "'now'", "'later'", "'from'", "'to'", "'forever'", "'yeet'", 
 			"'cheugy'", "'size'", "'gimme'", "'flex'", "'clapBack'", "'string'", 
@@ -84,7 +84,7 @@ public class GenzParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "WS", "GENZ", "TIS", "BE", "OF", "WITH", "HIGHKEY", "BRO", "GIV", 
+			null, "WS", "GENZ", "TIS", "BE", "OF", "WITH", "ARRAY", "BRO", "GIV", 
 			"IS", "OR", "MEH", "FUNCTIONCALL", "FOR", "IN", "DO", "ME", "NOW", "LATER", 
 			"FROM", "TO", "FOREVER", "YEET", "CHEUGY", "ARRAY_SIZE", "INPUT", "PRINT", 
 			"RETURN", "STRING", "INT", "FLOAT", "DOUBLE", "CHARACTER", "BOOLEAN", 
@@ -1178,7 +1178,7 @@ public class GenzParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ArrayChoiceContext extends ParserRuleContext {
-		public TerminalNode HIGHKEY() { return getToken(GenzParser.HIGHKEY, 0); }
+		public TerminalNode ARRAY() { return getToken(GenzParser.ARRAY, 0); }
 		public ArraySizeContext arraySize() {
 			return getRuleContext(ArraySizeContext.class,0);
 		}
@@ -1208,11 +1208,11 @@ public class GenzParser extends Parser {
 			setState(219);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case HIGHKEY:
+			case ARRAY:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(216);
-				match(HIGHKEY);
+				match(ARRAY);
 				setState(217);
 				arraySize();
 				}

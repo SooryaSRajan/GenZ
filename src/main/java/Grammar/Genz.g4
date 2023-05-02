@@ -29,7 +29,7 @@ forever: FOREVER | ; //final declaration
 
 //Array Declaration
 typesWithArray: types arrayChoice;
-arrayChoice: HIGHKEY arraySize | ;
+arrayChoice: ARRAY arraySize | ;
 arraySize: integerIDChoice | ;
 
 //Types for Variable
@@ -159,7 +159,7 @@ TIS: 'tis';
 BE: 'be';
 OF: 'of';
 WITH: 'with';
-HIGHKEY: 'highkey';
+ARRAY: 'chonky';
 BRO: 'br'('o')*;
 GIV: 'giv';
 IS: 'is';

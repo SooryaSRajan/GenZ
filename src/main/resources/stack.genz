@@ -1,4 +1,4 @@
-tis stack of integer highkey 10
+tis stack of integer chonky 10
 tis sizeVar be -1 of integer
 
 8==>This is a stack implementation in GenZ.
@@ -60,7 +60,7 @@ finesse for boolean in pop() {
     clapBack cap
 }
 
-finesse for noob in printArray(array of integer highkey) {
+finesse for noob in printArray(array of integer chonky) {
 
     do me from 0 to size of array tis be x {
         flex "Value at index " + x + " is: " + stack giv x

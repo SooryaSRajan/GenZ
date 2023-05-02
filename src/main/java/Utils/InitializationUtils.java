@@ -42,7 +42,7 @@ public class InitializationUtils {
         Types type = new Types();
         String baseType = getType(ctx.typesWithArray().types().getText(), true);
         type.setDataType(baseType);
-        boolean isHighKeyType = ctx.typesWithArray().arrayChoice() != null && ctx.typesWithArray().arrayChoice().HIGHKEY() != null;
+        boolean isHighKeyType = ctx.typesWithArray().arrayChoice() != null && ctx.typesWithArray().arrayChoice().ARRAY() != null;
         type.setArraySize(0);
         type.setArray(isHighKeyType);
         return type;
@@ -54,7 +54,7 @@ public class InitializationUtils {
         Types type = new Types();
         String baseType = getType(ctx.types().getText(), true);
         type.setDataType(baseType);
-        boolean isHighKeyType = ctx.arrayChoice() != null && ctx.arrayChoice().HIGHKEY() != null;
+        boolean isHighKeyType = ctx.arrayChoice() != null && ctx.arrayChoice().ARRAY() != null;
 
         if(isHighKeyType){
             if(ctx.arrayChoice().arraySize() != null && ctx.arrayChoice().arraySize().integerIDChoice() != null){
